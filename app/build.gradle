@@ -9,16 +9,34 @@ android {
         targetSdkVersion 19
         versionCode 1
         versionName "1.0"
+        testPackageName "eu.heiconnect.android.test"
+        testInstrumentationRunner "android.test.InstrumentationTestRunner"
     }
     buildTypes {
+        debug {
+            packageNameSuffix '.debug'
+            versionNameSuffix '-DEBUG'
+            debuggable true
+
+            buildConfigField 'String', 'URL_SCHEME', "\"http://\""
+            buildConfigField 'String', 'URL_DOMAIN', "\"localhost:3000\""
+            buildConfigField 'String', 'URL_PATH', "\"/api/v1/\""
+        }
         release {
             runProguard false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+
+            buildConfigField 'String', 'URL_SCHEME', "\"https://\""
+            buildConfigField 'String', 'URL_DOMAIN', "\"hei-connect.eu\""
+            buildConfigField 'String', 'URL_PATH', "\"/api/v1/\""
         }
+    }
+    sourceSets {
+        instrumentTest.setRoot('src/test')
     }
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:18.0.0'
+    compile 'com.android.support:support-v4:19.0.0'
     compile fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
 }
