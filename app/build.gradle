@@ -19,7 +19,7 @@ android {
             debuggable true
 
             buildConfigField 'String', 'URL_SCHEME', "\"http://\""
-            buildConfigField 'String', 'URL_DOMAIN', "\"localhost:3000\""
+            buildConfigField 'String', 'URL_DOMAIN', "\"10.0.3.2:3000\""
             buildConfigField 'String', 'URL_PATH', "\"/api/v1/\""
         }
         release {
@@ -34,9 +34,15 @@ android {
     sourceSets {
         instrumentTest.setRoot('src/test')
     }
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+    }
 }
 
 dependencies {
     compile 'com.android.support:support-v4:19.0.0'
+    compile 'com.mcxiaoke.volley:library-aar:1.0.0'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.3.1'
     compile fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
 }
