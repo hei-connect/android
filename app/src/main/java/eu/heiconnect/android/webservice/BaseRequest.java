@@ -71,6 +71,7 @@ public abstract class BaseRequest<T> extends Request<T> {
         try {
             if (volleyError.networkResponse != null) {
                 String json = new String(volleyError.networkResponse.data, HttpHeaderParser.parseCharset(volleyError.networkResponse.headers));
+                mapper.configure(DeserializationFeature.UNWRAP_ROOT_VALUE, true);
                 Error resultError = mapper.readValue(json, Error.class);
 
                 return new HeiConnectError(resultError);

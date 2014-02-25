@@ -1,11 +1,6 @@
 package eu.heiconnect.android.webservice;
 
-import android.test.InstrumentationTestCase;
-
 import com.android.volley.AuthFailureError;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,18 +10,7 @@ import eu.heiconnect.android.model.User;
 import eu.heiconnect.android.test.R;
 
 
-public class LoginRequestTest extends InstrumentationTestCase {
-
-    private ObjectMapper mapper;
-
-    @Override
-    protected void setUp() throws Exception {
-        super.setUp();
-
-        mapper = new ObjectMapper();
-        mapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
-        mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, true);
-    }
+public class LoginRequestTest extends AbstractDeserializationTest {
 
     public void testDeserialization() throws IOException {
         // Given
