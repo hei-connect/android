@@ -1,34 +1,33 @@
-apply plugin: 'android'
+apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 19
-    buildToolsVersion "19.0.1"
+    buildToolsVersion "20.0.0"
 
     defaultConfig {
-        minSdkVersion 14
+        minSdkVersion 15
         targetSdkVersion 19
         versionCode 1
         versionName "1.0"
-        testPackageName "eu.heiconnect.android.test"
+        applicationId "eu.heiconnect.android"
+        testApplicationId "eu.heiconnect.android.test"
         testInstrumentationRunner "android.test.InstrumentationTestRunner"
     }
     buildTypes {
         debug {
-            packageNameSuffix '.debug'
+            applicationIdSuffix '.debug'
             versionNameSuffix '-DEBUG'
             debuggable true
 
-            buildConfigField 'String', 'URL_SCHEME', "\"http://\""
-            buildConfigField 'String', 'URL_DOMAIN', "\"10.0.3.2:3000\""
-            buildConfigField 'String', 'URL_PATH', "\"/api/v1/\""
+            buildConfigField 'String', 'API_URL_BASE', "\"http://10.0.3.2:3000/\""
+            buildConfigField 'String', 'API_URL_PATH', "\"/api/v1/\""
         }
         release {
             runProguard false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
 
-            buildConfigField 'String', 'URL_SCHEME', "\"https://\""
-            buildConfigField 'String', 'URL_DOMAIN', "\"hei-connect.eu\""
-            buildConfigField 'String', 'URL_PATH', "\"/api/v1/\""
+            buildConfigField 'String', 'API_URL_BASE', "\"http://www.hei-connect.eu/\""
+            buildConfigField 'String', 'API_URL_PATH', "\"/api/v1/\""
         }
     }
     sourceSets {
@@ -41,8 +40,8 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:19.0.0'
-    compile 'com.mcxiaoke.volley:library-aar:1.0.0'
+    compile 'com.squareup.okhttp:okhttp:2.0.0'
+    compile 'com.mcxiaoke.volley:library:1.0.6@aar'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.3.1'
     compile fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
 }

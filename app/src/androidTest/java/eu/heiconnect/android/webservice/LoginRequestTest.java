@@ -5,8 +5,8 @@ import com.android.volley.AuthFailureError;
 import java.io.IOException;
 import java.io.InputStream;
 
-import eu.heiconnect.android.model.LoginResult;
-import eu.heiconnect.android.model.User;
+import eu.heiconnect.android.webservice.model.LoginResult;
+import eu.heiconnect.android.webservice.model.User;
 import eu.heiconnect.android.test.R;
 
 

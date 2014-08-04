@@ -1,8 +1,5 @@
-package eu.heiconnect.android.model;
+package eu.heiconnect.android.webservice.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class LoginResult {
 
     private User user;

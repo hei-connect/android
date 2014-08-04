@@ -1,10 +1,8 @@
-package eu.heiconnect.android.model;
+package eu.heiconnect.android.webservice.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 @JsonRootName("user")
 public class User {
 

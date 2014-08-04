@@ -16,28 +16,35 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 import eu.heiconnect.android.BuildConfig;
-import eu.heiconnect.android.model.Error;
+import eu.heiconnect.android.webservice.model.Error;
+import eu.heiconnect.android.utils.Configuration;
 
 public abstract class BaseRequest<T> extends Request<T> {
 
     private final Class<T> clazz;
     private final Response.Listener<T> listener;
-    protected ObjectMapper mapper = new ObjectMapper();
+    protected ObjectMapper mapper;
 
     public BaseRequest(Class<T> clazz, int method, String methodUrl, Response.Listener<T> listener, Response.ErrorListener errorListener) {
         super(method, getBasetUrl() + methodUrl, errorListener);
 
         this.clazz = clazz;
         this.listener = listener;
-
-        mapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
-        mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, true);
+        this.mapper = getAndInitializeMapper();
     }
 
     private static String getBasetUrl() {
-        return BuildConfig.URL_SCHEME
-                + BuildConfig.URL_DOMAIN
-                + BuildConfig.URL_PATH;
+        return Configuration.getInstance().getApiBaseUrl()
+                + BuildConfig.API_URL_PATH;
+    }
+
+    public static ObjectMapper getAndInitializeMapper() {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
+        mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, true);
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
+        return mapper;
     }
 
     @Override

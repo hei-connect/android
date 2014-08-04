@@ -1,20 +1,18 @@
-package eu.heiconnect.android.model;
+package eu.heiconnect.android.webservice.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 @JsonRootName("error")
 public class Error {
 
-    private String code;
+    private int code;
     private String message;
 
-    public String getCode() {
+    public int getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(int code) {
         this.code = code;
     }
 
