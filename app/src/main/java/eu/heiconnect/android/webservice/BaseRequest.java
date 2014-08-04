@@ -16,7 +16,6 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 import eu.heiconnect.android.BuildConfig;
-import eu.heiconnect.android.webservice.model.Error;
 import eu.heiconnect.android.utils.Configuration;
 
 public abstract class BaseRequest<T> extends Request<T> {

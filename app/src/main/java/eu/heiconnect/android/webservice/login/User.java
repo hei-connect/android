@@ -1,4 +1,4 @@
-package eu.heiconnect.android.webservice.model;
+package eu.heiconnect.android.webservice.login;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;

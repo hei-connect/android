@@ -10,9 +10,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 
 import eu.heiconnect.android.R;
-import eu.heiconnect.android.webservice.model.LoginResult;
-import eu.heiconnect.android.webservice.model.User;
-import eu.heiconnect.android.webservice.LoginRequest;
+import eu.heiconnect.android.webservice.login.LoginResult;
+import eu.heiconnect.android.webservice.login.User;
+import eu.heiconnect.android.webservice.login.LoginRequest;
 
 public class MainActivity extends Activity {
 

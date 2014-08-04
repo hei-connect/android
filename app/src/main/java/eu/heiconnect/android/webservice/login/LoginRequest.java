@@ -1,12 +1,11 @@
-package eu.heiconnect.android.webservice;
+package eu.heiconnect.android.webservice.login;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
 import com.android.volley.VolleyLog;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-import eu.heiconnect.android.webservice.model.LoginResult;
-import eu.heiconnect.android.webservice.model.User;
+import eu.heiconnect.android.webservice.BaseRequest;
 
 public class LoginRequest extends BaseRequest<LoginResult> {
 

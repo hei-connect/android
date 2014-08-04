@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import java.io.IOException;
 import java.io.InputStream;
 
-import eu.heiconnect.android.webservice.model.Error;
 import eu.heiconnect.android.test.R;
 
 
