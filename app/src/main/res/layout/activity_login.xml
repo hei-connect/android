@@ -22,7 +22,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Connexion"
+            android:text="@string/login_title"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_marginBottom="24dp" />
 
@@ -42,7 +42,7 @@
                     android:id="@+id/edittext_login"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Identifiant"
+                    android:hint="@string/login_login_hint"
                     android:singleLine="true"
                     android:inputType="textNoSuggestions"
                     android:imeOptions="actionNext"
@@ -60,7 +60,7 @@
                     android:id="@id/edittext_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Mot de passe"
+                    android:hint="@string/login_password_hint"
                     android:singleLine="true"
                     android:inputType="textPassword"
                     android:imeOptions="actionDone" />
@@ -71,7 +71,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/Button.Primary"
-                android:text="Envoyer" />
+                android:text="@string/login_submit" />
 
         </LinearLayout>
     </LinearLayout>

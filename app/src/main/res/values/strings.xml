@@ -2,7 +2,19 @@
 <resources>
 
     <string name="app_name">HEI-Connect</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="generic_error">Erreur</string>
+
+    <!-- SPLASH SCREEN -->
+    <string name="splash_outdated_title">Version périmée</string>
+    <string name="splash_outdated_message">Tu dois mettre à jour l\'application pour continuer à l\'utiliser</string>
+    <string name="splash_outdated_close">Fermer</string>
+    <string name="splash_maintenance_title">Maintenance</string>
+
+
+    <!-- LOGIN SCREEN -->
+    <string name="login_title">Connexion</string>
+    <string name="login_login_hint">Identifiant</string>
+    <string name="login_password_hint">Mot de passe</string>
+    <string name="login_submit">Envoyer</string>
 
 </resources>

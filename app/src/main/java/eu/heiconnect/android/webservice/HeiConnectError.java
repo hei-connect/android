@@ -9,4 +9,12 @@ public class HeiConnectError extends VolleyError {
     public HeiConnectError(Error resultError) {
         this.resultError = resultError;
     }
+
+    public Error getResultError() {
+        return resultError;
+    }
+
+    public void setResultError(Error resultError) {
+        this.resultError = resultError;
+    }
 }
