@@ -1,0 +1,79 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/content_frame"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ProgressBar
+        android:id="@+id/progressbar_login_loader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-6dp"
+        android:indeterminate="true"
+        style="?android:progressBarStyleHorizontal"
+        android:alpha="0" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        android:layout_centerInParent="true">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Connexion"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_marginBottom="24dp" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:background="@color/main">
+
+            <eu.heiconnect.android.utils.FloatLabelLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <EditText
+                    android:id="@+id/edittext_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Identifiant"
+                    android:singleLine="true"
+                    android:inputType="textNoSuggestions"
+                    android:imeOptions="actionNext"
+                    android:nextFocusDown="@+id/edittext_password" />
+
+            </eu.heiconnect.android.utils.FloatLabelLayout>
+
+
+            <eu.heiconnect.android.utils.FloatLabelLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp">
+
+                <EditText
+                    android:id="@id/edittext_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Mot de passe"
+                    android:singleLine="true"
+                    android:inputType="textPassword"
+                    android:imeOptions="actionDone" />
+            </eu.heiconnect.android.utils.FloatLabelLayout>
+
+            <Button
+                android:id="@+id/button_submit_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Button.Primary"
+                android:text="Envoyer" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

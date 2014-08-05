@@ -5,14 +5,6 @@ import eu.heiconnect.android.BuildConfig;
 public class Configuration {
 
     // ----------------------------------
-    // SINGLETON
-    // ----------------------------------
-    private static Configuration instance = new Configuration();
-    public static Configuration getInstance() {
-        return instance;
-    }
-
-    // ----------------------------------
     // ATTRIBUTES
     // ----------------------------------
     private String apiBaseUrl;
@@ -21,7 +13,7 @@ public class Configuration {
     // ----------------------------------
     // CONSTRUCTORS
     // ----------------------------------
-    private Configuration() {
+    public Configuration() {
         apiBaseUrl = BuildConfig.API_URL_BASE;
         applicationMinimumVersion = 0;
     }

@@ -1,5 +1,6 @@
 package eu.heiconnect.android.webservice.login;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
@@ -8,7 +9,6 @@ public class User {
 
     @JsonProperty("ecampus_id")
     private String ecampusId;
-    @JsonProperty("api_token")
     private String apiToken;
 
     private String password;
@@ -30,10 +30,12 @@ public class User {
         this.ecampusId = ecampusId;
     }
 
+    @JsonIgnore
     public String getApiToken() {
         return apiToken;
     }
 
+    @JsonProperty("api_token")
     public void setApiToken(String apiToken) {
         this.apiToken = apiToken;
     }

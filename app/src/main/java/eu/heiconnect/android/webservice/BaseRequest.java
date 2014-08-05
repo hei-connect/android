@@ -24,17 +24,16 @@ public abstract class BaseRequest<T> extends Request<T> {
     private final Response.Listener<T> listener;
     protected ObjectMapper mapper;
 
-    public BaseRequest(Class<T> clazz, int method, String methodUrl, Response.Listener<T> listener, Response.ErrorListener errorListener) {
-        super(method, getBasetUrl() + methodUrl, errorListener);
+    public BaseRequest(Class<T> clazz, int method, String methodUrl, Configuration configuration, Response.Listener<T> listener, Response.ErrorListener errorListener) {
+        super(method, getBasetUrl(configuration) + methodUrl, errorListener);
 
         this.clazz = clazz;
         this.listener = listener;
         this.mapper = getAndInitializeMapper();
     }
 
-    private static String getBasetUrl() {
-        return Configuration.getInstance().getApiBaseUrl()
-                + BuildConfig.API_URL_PATH;
+    private static String getBasetUrl(Configuration configuration) {
+        return configuration.getApiBaseUrl() + BuildConfig.API_URL_PATH;
     }
 
     public static ObjectMapper getAndInitializeMapper() {

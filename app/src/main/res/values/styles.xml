@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="android:Theme.Holo.Light">
-        <!-- Customize your theme here. -->
+    <style name="Button.Primary" parent="Button">
+        <item name="android:background">@drawable/button_primary</item>
+    </style>
+
+    <style name="FloatLabel" parent="android:TextAppearance.Small">
+        <item name="android:textColor">@drawable/float_label</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
 </resources>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="android:Theme.Holo">
+        <!-- Screen background -->
+        <item name="android:windowBackground">@color/background</item>
+
+        <!-- Text appearance -->
+        <item name="android:textAppearance">@style/TextAppearance</item>
+
+        <!-- Buttons -->
+        <item name="android:buttonStyle">@style/Button</item>
+
+        <!-- Action Bar Style Generator -->
+        <item name="android:actionBarItemBackground">@drawable/selectable_background_heiconnect</item>
+        <item name="android:popupMenuStyle">@style/PopupMenu.Heiconnect</item>
+        <item name="android:dropDownListViewStyle">@style/DropDownListView.Heiconnect</item>
+        <item name="android:actionBarTabStyle">@style/ActionBarTabStyle.Heiconnect</item>
+        <item name="android:actionDropDownStyle">@style/DropDownNav.Heiconnect</item>
+        <item name="android:actionBarStyle">@style/ActionBar.Solid.Heiconnect</item>
+        <item name="android:actionModeBackground">@drawable/cab_background_top_heiconnect</item>
+        <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_heiconnect</item>
+        <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Heiconnect</item>
+
+        <!-- Holo colors -->
+        <item name="android:editTextBackground">@drawable/heiconnect_edit_text_holo_dark</item>
+        <item name="android:progressBarStyleHorizontal">@style/ProgressBar</item>
+        <item name="android:listChoiceBackgroundIndicator">@drawable/heiconnect_list_selector_holo_dark</item>
+        <item name="android:activatedBackgroundIndicator">@drawable/heiconnect_activated_background_holo_dark</item>
+    </style>
+
+    <style name="TextAppearance" parent="android:TextAppearance">
+        <item name="android:textColor">@color/text_color</item>
+    </style>
+
+    <style name="Button" parent="android:Widget.Button">
+        <item name="android:textColor">@drawable/button_default_text_color</item>
+        <item name="android:background">@drawable/button_default</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingBottom">14dp</item>
+    </style>
+
+
+    <!-- Action bar style generator-->
+
+    <style name="ActionBar.Solid.Heiconnect" parent="@android:style/Widget.Holo.ActionBar.Solid">
+        <item name="android:background">@drawable/ab_solid_heiconnect</item>
+        <item name="android:backgroundStacked">@drawable/ab_stacked_solid_heiconnect</item>
+        <item name="android:backgroundSplit">@drawable/ab_bottom_solid_heiconnect</item>
+        <item name="android:progressBarStyle">@style/ProgressBar.Heiconnect</item>
+    </style>
+
+    <style name="ActionBar.Transparent.Heiconnect" parent="@android:style/Widget.Holo.ActionBar">
+        <item name="android:background">@drawable/ab_transparent_heiconnect</item>
+        <item name="android:progressBarStyle">@style/ProgressBar.Heiconnect</item>
+    </style>
+
+    <style name="PopupMenu.Heiconnect" parent="@android:style/Widget.Holo.ListPopupWindow">
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_heiconnect</item>
+    </style>
+
+    <style name="DropDownListView.Heiconnect" parent="@android:style/Widget.Holo.ListView.DropDown">
+        <item name="android:listSelector">@drawable/selectable_background_heiconnect</item>
+    </style>
+
+    <style name="ActionBarTabStyle.Heiconnect" parent="@android:style/Widget.Holo.ActionBar.TabView">
+        <item name="android:background">@drawable/tab_indicator_ab_heiconnect</item>
+    </style>
+
+    <style name="DropDownNav.Heiconnect" parent="@android:style/Widget.Holo.Spinner">
+        <item name="android:background">@drawable/spinner_background_ab_heiconnect</item>
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_heiconnect</item>
+        <item name="android:dropDownSelector">@drawable/selectable_background_heiconnect</item>
+    </style>
+
+    <style name="ProgressBar.Heiconnect" parent="@android:style/Widget.Holo.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/progress_horizontal_heiconnect</item>
+    </style>
+
+    <style name="ActionButton.CloseMode.Heiconnect" parent="@android:style/Widget.Holo.ActionButton.CloseMode">
+        <item name="android:background">@drawable/btn_cab_done_heiconnect</item>
+    </style>
+
+    <!-- Holo colors progress bar-->
+
+    <style name="ProgressBar" parent="android:Widget.Holo.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/heiconnect_progress_horizontal_holo_dark</item>
+        <item name="android:indeterminateDrawable">@drawable/heiconnect_progress_indeterminate_horizontal_holo_dark</item>
+    </style>
+
+
+</resources>

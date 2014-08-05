@@ -6,3 +6,4 @@
 *.iml
 test_servers/
 build/
+*.properties

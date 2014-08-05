@@ -1,3 +1,15 @@
 <resources>
+    <color name="background">#2B3E50</color>
 
+    <color name="text_color">#EBEBEB</color>
+    <color name="text_color_disabled">#B4BBC1</color>
+    <color name="text_color_hint">#808080</color>
+
+    <color name="main">#4E5D6C</color>
+    <color name="main_disabled">#415262</color>
+    <color name="main_focused">#485563</color>
+
+    <color name="primary">#DF691A</color>
+    <color name="primary_disabled">#9F5A2C</color>
+    <color name="primary_focused">#B15315</color>
 </resources>

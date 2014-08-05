@@ -5,6 +5,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyLog;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import eu.heiconnect.android.utils.Configuration;
 import eu.heiconnect.android.webservice.BaseRequest;
 
 public class LoginRequest extends BaseRequest<LoginResult> {
@@ -13,8 +14,8 @@ public class LoginRequest extends BaseRequest<LoginResult> {
 
     private final User user;
 
-    public LoginRequest(User user, Response.Listener<LoginResult> listener, Response.ErrorListener errorListener) {
-        super(LoginResult.class, Method.POST, METHOD_ROUTE, listener, errorListener);
+    public LoginRequest(Configuration configuration, User user, Response.Listener<LoginResult> listener, Response.ErrorListener errorListener) {
+        super(LoginResult.class, Method.POST, METHOD_ROUTE, configuration, listener, errorListener);
 
         this.user = user;
     }
