@@ -20,10 +20,16 @@ import eu.heiconnect.android.utils.Configuration;
 
 public abstract class BaseRequest<T> extends Request<T> {
 
+    // ----------------------------------
+    // ATTRIBUTES
+    // ----------------------------------
     private final Class<T> clazz;
     private final Response.Listener<T> listener;
     protected ObjectMapper mapper;
 
+    // ----------------------------------
+    // CONSTRUCTORS
+    // ----------------------------------
     public BaseRequest(Class<T> clazz, int method, String methodUrl, Configuration configuration, Response.Listener<T> listener, Response.ErrorListener errorListener) {
         super(method, getBasetUrl(configuration) + methodUrl, errorListener);
 
@@ -32,10 +38,9 @@ public abstract class BaseRequest<T> extends Request<T> {
         this.mapper = getAndInitializeMapper();
     }
 
-    private static String getBasetUrl(Configuration configuration) {
-        return configuration.getApiBaseUrl() + BuildConfig.API_URL_PATH;
-    }
-
+    // ----------------------------------
+    // PUBLIC METHODS
+    // ----------------------------------
     public static ObjectMapper getAndInitializeMapper() {
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
@@ -45,6 +50,9 @@ public abstract class BaseRequest<T> extends Request<T> {
         return mapper;
     }
 
+    // ----------------------------------
+    // OVERRIDEN METHODS
+    // ----------------------------------
     @Override
     public String getBodyContentType() {
         return "application/json; charset=utf-8";
@@ -92,4 +100,12 @@ public abstract class BaseRequest<T> extends Request<T> {
             return volleyError;
         }
     }
+
+    // ----------------------------------
+    // PRIVATE METHODS
+    // ----------------------------------
+    private static String getBasetUrl(Configuration configuration) {
+        return configuration.getApiBaseUrl() + BuildConfig.API_URL_PATH;
+    }
+
 }

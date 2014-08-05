@@ -17,11 +17,17 @@ import eu.heiconnect.android.webservice.login.User;
 
 public class LoginActivity extends ConnectActivity {
 
+    // ----------------------------------
+    // ATTRIBUTES
+    // ----------------------------------
     private ProgressBar progressBar;
     private EditText loginEditText;
     private EditText passwordEditText;
     private Button submitButton;
 
+    // ----------------------------------
+    // LIFE CYCLE
+    // ----------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +53,9 @@ public class LoginActivity extends ConnectActivity {
         });
     }
 
+    // ----------------------------------
+    // PRIVATE METHODS
+    // ----------------------------------
     private void performLoginRequest(String login, String password) {
         User user = new User(login, password);
         LoginRequest request = new LoginRequest(getConfiguration(), user, new Response.Listener<LoginResult>() {

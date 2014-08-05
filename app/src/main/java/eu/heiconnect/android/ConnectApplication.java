@@ -9,9 +9,15 @@ import eu.heiconnect.android.utils.Configuration;
 
 public class ConnectApplication extends Application {
 
+    // ----------------------------------
+    // ATTRIBUTES
+    // ----------------------------------
     private RequestQueue requestQueue;
     private Configuration configuration;
 
+    // ----------------------------------
+    // LIFE CYCLE
+    // ----------------------------------
     @Override
     public void onCreate() {
         super.onCreate();
@@ -26,6 +32,9 @@ public class ConnectApplication extends Application {
         super.onTerminate();
     }
 
+    // ----------------------------------
+    // PUBLIC METHODS
+    // ----------------------------------
     public RequestQueue getRequestQueue() {
         return requestQueue;
     }

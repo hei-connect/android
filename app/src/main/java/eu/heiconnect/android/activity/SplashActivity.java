@@ -18,10 +18,16 @@ import eu.heiconnect.android.webservice.config.ConfigResult;
 
 public class SplashActivity extends ConnectActivity {
 
-    public static final String MARKET_URI = "market://details?id=";
-    public static final String PLAY_STORE_URI = "http://play.google.com/store/apps/details?id=";
-    public static final int MAINTENANCE_ERROR_CODE = 10;
+    // ----------------------------------
+    // CONSTANTS
+    // ----------------------------------
+    private static final String MARKET_URI = "market://details?id=";
+    private static final String PLAY_STORE_URI = "http://play.google.com/store/apps/details?id=";
+    private static final int MAINTENANCE_ERROR_CODE = 10;
 
+    // ----------------------------------
+    // LIFE CYCLE
+    // ----------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +39,10 @@ public class SplashActivity extends ConnectActivity {
         getRequestQueue().add(request);
     }
 
+
+    // ----------------------------------
+    // INNER CLASSES
+    // ----------------------------------
     private class SuccessListener implements Response.Listener<ConfigResult> {
         @Override
         public void onResponse(ConfigResult configResult) {
