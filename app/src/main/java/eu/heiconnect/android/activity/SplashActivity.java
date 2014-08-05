@@ -12,7 +12,6 @@ import com.android.volley.VolleyError;
 import eu.heiconnect.android.BuildConfig;
 import eu.heiconnect.android.ConnectApplication;
 import eu.heiconnect.android.R;
-import eu.heiconnect.android.webservice.HeiConnectError;
 import eu.heiconnect.android.webservice.config.ConfigRequest;
 import eu.heiconnect.android.webservice.config.ConfigResult;
 
@@ -23,7 +22,6 @@ public class SplashActivity extends ConnectActivity {
     // ----------------------------------
     private static final String MARKET_URI = "market://details?id=";
     private static final String PLAY_STORE_URI = "http://play.google.com/store/apps/details?id=";
-    private static final int MAINTENANCE_ERROR_CODE = 10;
 
     // ----------------------------------
     // LIFE CYCLE
@@ -53,6 +51,7 @@ public class SplashActivity extends ConnectActivity {
             if (BuildConfig.VERSION_CODE >= application.getConfiguration().getApplicationMinimumVersion()) {
                 Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                 startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in, 0);
                 finish();
             } else {
                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(SplashActivity.this);
@@ -69,7 +68,7 @@ public class SplashActivity extends ConnectActivity {
                         finish();
                     }
                 });
-                dialogBuilder.setNegativeButton(getString(R.string.splash_outdated_close), new DialogInterface.OnClickListener() {
+                dialogBuilder.setNegativeButton(getString(R.string.generic_close), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         finish();
@@ -83,22 +82,7 @@ public class SplashActivity extends ConnectActivity {
     private class ErrorListener implements Response.ErrorListener {
         @Override
         public void onErrorResponse(VolleyError volleyError) {
-            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(SplashActivity.this);
-            if (volleyError instanceof HeiConnectError) {
-                eu.heiconnect.android.webservice.Error error = ((HeiConnectError) volleyError).getResultError();
-                dialogBuilder.setTitle(getString(error.getCode() == MAINTENANCE_ERROR_CODE ? R.string.splash_maintenance_title : R.string.generic_error));
-                dialogBuilder.setMessage(error.getMessage());
-            } else {
-                dialogBuilder.setTitle(getString(R.string.generic_error));
-                dialogBuilder.setMessage(volleyError.getClass().getSimpleName());
-            }
-            dialogBuilder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    finish();
-                }
-            });
-            dialogBuilder.show();
+            showGenericErrorAlertDialog(volleyError);
         }
     }
 }
