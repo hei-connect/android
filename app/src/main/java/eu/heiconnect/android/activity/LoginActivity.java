@@ -69,8 +69,8 @@ public class LoginActivity extends ConnectActivity {
                 progressBar.animate().alpha(0);
 
                 PreferencesWrapper preferences = new PreferencesWrapper(LoginActivity.this);
-                preferences.putUserToken(user.getApiToken());
-                preferences.putUserName(user.getEcampusId());
+                preferences.putUserToken(loginResult.getUser().getApiToken());
+                preferences.putUserName(loginResult.getUser().getEcampusId());
 
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
