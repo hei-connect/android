@@ -18,4 +18,10 @@
     <string name="login_bad_credentials_title">Identifiants incorrects !</string>
     <string name="login_not_signed_up_title">Pas encore inscrit</string>
 
+    <!-- MAIN SCREEN -->
+    <string name="main_tab_title_today">Aujourd\'hui</string>
+    <string name="main_tab_title_tomorrow">Demain</string>
+    <string name="main_tab_title_grades">Notes</string>
+    <string name="main_tab_title_absences">Absences</string>
+
 </resources>

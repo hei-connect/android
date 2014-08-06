@@ -2,15 +2,22 @@ package eu.heiconnect.android.adapter;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Context;
 import android.support.v13.app.FragmentPagerAdapter;
 
+import eu.heiconnect.android.R;
+import eu.heiconnect.android.fragment.ScheduleFragment;
+
 public class PagerAdapter extends FragmentPagerAdapter {
+
+    private final Context context;
 
     // ----------------------------------
     // CONSTRUCTORS
     // ----------------------------------
-    public PagerAdapter(FragmentManager fragmentManager) {
+    public PagerAdapter(Context context, FragmentManager fragmentManager) {
         super(fragmentManager);
+        this.context = context;
     }
 
     // ----------------------------------
@@ -22,10 +29,10 @@ public class PagerAdapter extends FragmentPagerAdapter {
 
         switch (page) {
             case TODAY:
-                return new Fragment();
+                return ScheduleFragment.newInstance(ScheduleFragment.Day.TODAY);
 
             case TOMORROW:
-                return new Fragment();
+                return ScheduleFragment.newInstance(ScheduleFragment.Day.TOMORROW);
 
             case GRADES:
                 return new Fragment();
@@ -45,16 +52,26 @@ public class PagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return Page.values()[position].toString();
+        return context.getString(Page.values()[position].getTitleId());
     }
 
     // ----------------------------------
     // INNER CLASSES
     // ----------------------------------
     public static enum Page {
-        TODAY,
-        TOMORROW,
-        GRADES,
-        ABSENCES
+        TODAY(R.string.main_tab_title_today),
+        TOMORROW(R.string.main_tab_title_tomorrow),
+        GRADES(R.string.main_tab_title_grades),
+        ABSENCES(R.string.main_tab_title_absences);
+
+        private int titleId;
+
+        Page(int title) {
+            this.titleId = title;
+        }
+
+        public int getTitleId() {
+            return titleId;
+        }
     }
 }

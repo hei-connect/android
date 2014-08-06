@@ -4,19 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 
-import com.viewpagerindicator.TabPageIndicator;
+import com.astuetz.PagerSlidingTabStrip;
 
 import eu.heiconnect.android.R;
 import eu.heiconnect.android.adapter.PagerAdapter;
 import eu.heiconnect.android.utils.PreferencesWrapper;
 
 public class MainActivity extends ConnectActivity {
-
-    // ----------------------------------
-    // ATTRIBUTES
-    // ----------------------------------
-    private ViewPager viewPager;
-    private TabPageIndicator tabIndicator;
 
     // ----------------------------------
     // LIFE CYCLE
@@ -26,12 +20,12 @@ public class MainActivity extends ConnectActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager_main);
-        tabIndicator = (TabPageIndicator) findViewById(R.id.tabpageindicator_main);
-
-        PagerAdapter pagerAdapter = new PagerAdapter(getFragmentManager());
+        PagerAdapter pagerAdapter = new PagerAdapter(this, getFragmentManager());
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager_main);
         viewPager.setAdapter(pagerAdapter);
-        tabIndicator.setViewPager(viewPager);
+
+        PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.pagerslidingtabstrip_main);
+        tabs.setViewPager(viewPager);
     }
 
     @Override
@@ -49,3 +43,5 @@ public class MainActivity extends ConnectActivity {
         }
     }
 }
+
+

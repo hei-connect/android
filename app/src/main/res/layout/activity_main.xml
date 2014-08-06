@@ -1,17 +1,21 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.viewpagerindicator.TabPageIndicator
-        android:id="@+id/tabpageindicator_main"
+    <com.astuetz.PagerSlidingTabStrip
+        android:id="@+id/pagerslidingtabstrip_main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="48dip"
+        android:background="@color/main_disabled"
+        android:textColor="@drawable/button_default_text_color"
+        app:pstsIndicatorColor="@color/info"
+        app:pstsDividerColor="@color/main" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tabpageindicator_main"
+        android:layout_below="@id/pagerslidingtabstrip_main"
         android:layout_alignParentBottom="true" />
-
 </RelativeLayout>
