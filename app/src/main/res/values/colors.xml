@@ -14,4 +14,7 @@
     <color name="primary_focused">#B15315</color>
 
     <color name="info">#5BC0DE</color>
+    <color name="success">#5CB85C</color>
+    <color name="warning">#F0AD4E</color>
+    <color name="danger">#D9534F</color>
 </resources>

@@ -3,7 +3,6 @@ package eu.heiconnect.android.fragment;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.widget.ListViewAutoScrollHelper;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,12 +51,22 @@ public class ScheduleFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         SwipeRefreshLayout refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swiperefreshlayout_schedule);
+        refreshLayout.setOnRefreshListener(new RefreshListener());
+        refreshLayout.setColorSchemeColors(getResources().getColor(R.color.success), getResources().getColor(R.color.warning),
+                getResources().getColor(R.color.primary), getResources().getColor(R.color.danger));
         ListView listView = (ListView) view.findViewById(R.id.listview_schedule);
     }
 
     // ----------------------------------
     // INNER CLASSES
     // ----------------------------------
+    private class RefreshListener implements SwipeRefreshLayout.OnRefreshListener {
+        @Override
+        public void onRefresh() {
+
+        }
+    }
+
     public enum Day {
         TODAY, TOMORROW
     }
