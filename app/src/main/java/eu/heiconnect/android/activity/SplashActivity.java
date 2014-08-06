@@ -12,6 +12,7 @@ import com.android.volley.VolleyError;
 import eu.heiconnect.android.BuildConfig;
 import eu.heiconnect.android.ConnectApplication;
 import eu.heiconnect.android.R;
+import eu.heiconnect.android.utils.PreferencesWrapper;
 import eu.heiconnect.android.webservice.config.ConfigRequest;
 import eu.heiconnect.android.webservice.config.ConfigResult;
 
@@ -49,7 +50,14 @@ public class SplashActivity extends ConnectActivity {
             application.getConfiguration().setApiBaseUrl(configResult.getConfig().getUrl());
 
             if (BuildConfig.VERSION_CODE >= application.getConfiguration().getApplicationMinimumVersion()) {
-                Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                // If the user is already logged in, go to main activity
+                PreferencesWrapper preferences = new PreferencesWrapper(SplashActivity.this);
+                Intent intent;
+                if (preferences.getUserName() != null && preferences.getUserToken() != null) {
+                    intent = new Intent(SplashActivity.this, MainActivity.class);
+                } else {
+                    intent = new Intent(SplashActivity.this, LoginActivity.class);
+                }
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in, 0);
                 finish();

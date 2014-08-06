@@ -20,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
 import eu.heiconnect.android.R;
+import eu.heiconnect.android.utils.PreferencesWrapper;
 import eu.heiconnect.android.webservice.HeiConnectError;
 import eu.heiconnect.android.webservice.login.LoginRequest;
 import eu.heiconnect.android.webservice.login.LoginResult;
@@ -61,12 +62,19 @@ public class LoginActivity extends ConnectActivity {
     // PRIVATE METHODS
     // ----------------------------------
     private void performLoginRequest(String login, String password) {
-        User user = new User(login, password);
+        final User user = new User(login, password);
         LoginRequest request = new LoginRequest(getConfiguration(), user, new Response.Listener<LoginResult>() {
             @Override
             public void onResponse(LoginResult loginResult) {
                 progressBar.animate().alpha(0);
-                // TODO Store token internally and launch main activity
+
+                PreferencesWrapper preferences = new PreferencesWrapper(LoginActivity.this);
+                preferences.putUserToken(user.getApiToken());
+                preferences.putUserName(user.getEcampusId());
+
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
             }
         }, new Response.ErrorListener() {
             @Override
