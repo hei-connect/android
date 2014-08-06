@@ -5,6 +5,7 @@ import android.app.Application;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.crashlytics.android.Crashlytics;
+import com.newrelic.agent.android.NewRelic;
 
 import eu.heiconnect.android.utils.Configuration;
 import eu.heiconnect.android.webservice.OkHttpStack;
@@ -24,10 +25,12 @@ public class ConnectApplication extends Application {
     public void onCreate() {
         super.onCreate();
         Crashlytics.start(this);
+        NewRelic.withApplicationToken(BuildConfig.NEWRELIC_KEY).start(this);
 
         configuration = new Configuration();
         requestQueue = Volley.newRequestQueue(this, new OkHttpStack());
         requestQueue.start();
+
     }
 
     @Override

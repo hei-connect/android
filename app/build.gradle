@@ -14,6 +14,7 @@ repositories {
     maven { url 'http://download.crashlytics.com/maven' }
 }
 
+apply plugin: 'newrelic'
 
 android {
     compileSdkVersion 19
@@ -36,6 +37,7 @@ android {
         debug {
             buildConfigField 'String', 'API_URL_BASE', "\"http://10.0.3.2:3000/\""
             buildConfigField 'String', 'API_URL_PATH', "\"api/v1/\""
+            buildConfigField 'String', 'NEWRELIC_KEY', "\"AA41630c18fd5b723beb00e894e944f54b33542169\""
 
             signingConfig signingConfigs.debug
             applicationIdSuffix '.debug'
@@ -45,6 +47,7 @@ android {
         staging {
             buildConfigField 'String', 'API_URL_BASE', "\"http://www.hei-connect.eu/\""
             buildConfigField 'String', 'API_URL_PATH', "\"api/v1/\""
+            buildConfigField 'String', 'NEWRELIC_KEY', "\"AA41630c18fd5b723beb00e894e944f54b33542169\""
 
             signingConfig signingConfigs.debug
             applicationIdSuffix '.staging'
@@ -54,6 +57,7 @@ android {
         release {
             buildConfigField 'String', 'API_URL_BASE', "\"http://www.hei-connect.eu/\""
             buildConfigField 'String', 'API_URL_PATH', "\"api/v1/\""
+            buildConfigField 'String', 'NEWRELIC_KEY', "\"AA41630c18fd5b723beb00e894e944f54b33542169\""
 
             signingConfig signingConfigs.release
 
@@ -82,14 +86,15 @@ dependencies {
     compile 'com.nhaarman.listviewanimations:library:2.6.0'
 
     compile 'com.crashlytics.android:crashlytics:1.+'
+    compile 'com.newrelic.agent.android:android-agent:3.+'
 
     compile fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
 }
 
 // Read the release signing options from file
-def props = new Properties()
-props.load(new FileInputStream(rootProject.file("release.properties")))
-android.signingConfigs.release.storeFile rootProject.file(props.keyStore)
-android.signingConfigs.release.storePassword props.keyStorePassword
-android.signingConfigs.release.keyAlias props.keyAlias
-android.signingConfigs.release.keyPassword props.keyAliasPassword
+def signingProps = new Properties()
+signingProps.load(new FileInputStream(rootProject.file("release.properties")))
+android.signingConfigs.release.storeFile rootProject.file(signingProps.keyStore)
+android.signingConfigs.release.storePassword signingProps.keyStorePassword
+android.signingConfigs.release.keyAlias signingProps.keyAlias
+android.signingConfigs.release.keyPassword signingProps.keyAliasPassword
