@@ -59,7 +59,7 @@ dependencies {
     compile 'com.squareup.okhttp:okhttp:2.0.0'
     compile 'com.mcxiaoke.volley:library:1.0.6@aar'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.3.1'
-    compile 'com.android.support:support-v4:20.0.0'
+    compile 'com.android.support:support-v13:20.0.0'
     compile("com.mcxiaoke.viewpagerindicator:library:2.4.1") {
         exclude group: 'com.android.support', module: 'support-v4'
     }

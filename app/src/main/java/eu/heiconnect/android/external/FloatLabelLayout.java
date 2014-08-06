@@ -1,4 +1,4 @@
-package eu.heiconnect.android.utils;
+package eu.heiconnect.android.external;
 /*
  * Copyright (C) 2014 Chris Banes
  *

@@ -31,7 +31,7 @@
         android:background="@color/main">
 
 
-        <eu.heiconnect.android.utils.FloatLabelLayout
+        <eu.heiconnect.android.external.FloatLabelLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp">
@@ -46,10 +46,10 @@
                 android:imeOptions="actionNext"
                 android:nextFocusDown="@+id/edittext_password" />
 
-        </eu.heiconnect.android.utils.FloatLabelLayout>
+        </eu.heiconnect.android.external.FloatLabelLayout>
 
 
-        <eu.heiconnect.android.utils.FloatLabelLayout
+        <eu.heiconnect.android.external.FloatLabelLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp">
@@ -62,7 +62,7 @@
                 android:singleLine="true"
                 android:inputType="textPassword"
                 android:imeOptions="actionDone" />
-        </eu.heiconnect.android.utils.FloatLabelLayout>
+        </eu.heiconnect.android.external.FloatLabelLayout>
 
         <Button
             android:id="@+id/button_submit_login"
