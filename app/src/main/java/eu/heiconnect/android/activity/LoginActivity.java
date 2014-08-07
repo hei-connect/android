@@ -63,7 +63,7 @@ public class LoginActivity extends ConnectActivity {
     // ----------------------------------
     private void performLoginRequest(String login, String password) {
         final User user = new User(login, password);
-        LoginRequest request = new LoginRequest(getConfiguration(), user, new Response.Listener<LoginResult>() {
+        LoginRequest request = new LoginRequest(this, user, new Response.Listener<LoginResult>() {
             @Override
             public void onResponse(LoginResult loginResult) {
                 progressBar.animate().alpha(0);

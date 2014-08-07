@@ -1,5 +1,6 @@
 package eu.heiconnect.android.webservice;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
 import com.android.volley.Request;
@@ -14,24 +15,36 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
 
 import eu.heiconnect.android.BuildConfig;
-import eu.heiconnect.android.utils.Configuration;
+import eu.heiconnect.android.activity.ConnectActivity;
 
 public abstract class BaseRequest<T> extends Request<T> {
 
     // ----------------------------------
     // ATTRIBUTES
     // ----------------------------------
-    private final Class<T> clazz;
-    private final Response.Listener<T> listener;
+    private Class<T> clazz;
+    private Response.Listener<T> listener;
     protected ObjectMapper mapper;
 
     // ----------------------------------
     // CONSTRUCTORS
     // ----------------------------------
-    public BaseRequest(Class<T> clazz, int method, String methodUrl, Configuration configuration, Response.Listener<T> listener, Response.ErrorListener errorListener) {
-        super(method, getBasetUrl(configuration) + methodUrl, errorListener);
+    public BaseRequest() {
+        // FIXME Ugly workaround to avoid writing a test with a ConnectActivity...
+        super(Method.HEAD, "dumbUrl", null);
+        if (!BuildConfig.DEBUG) {
+            throw new RuntimeException("This constructor is used only for testing");
+        }
+
+        this.mapper = getAndInitializeMapper();
+    }
+
+    public BaseRequest(Class<T> clazz, int method, String methodUrl, ConnectActivity activity, Response.Listener<T> listener, Response.ErrorListener errorListener) {
+        super(method, getBasetUrl(activity) + methodUrl, errorListener);
 
         this.clazz = clazz;
         this.listener = listener;
@@ -56,6 +69,11 @@ public abstract class BaseRequest<T> extends Request<T> {
     @Override
     public String getBodyContentType() {
         return "application/json; charset=utf-8";
+    }
+
+    @Override
+    protected Map<String, String> getParams() throws AuthFailureError {
+        return new HashMap<String, String>();
     }
 
     @Override
@@ -104,8 +122,8 @@ public abstract class BaseRequest<T> extends Request<T> {
     // ----------------------------------
     // PRIVATE METHODS
     // ----------------------------------
-    private static String getBasetUrl(Configuration configuration) {
-        return configuration.getApiBaseUrl() + BuildConfig.API_URL_PATH;
+    private static String getBasetUrl(ConnectActivity activity) {
+        return activity.getConfiguration().getApiBaseUrl() + BuildConfig.API_URL_PATH;
     }
 
 }

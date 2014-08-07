@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import eu.heiconnect.android.test.R;
-import eu.heiconnect.android.utils.Configuration;
 import eu.heiconnect.android.webservice.login.LoginRequest;
 import eu.heiconnect.android.webservice.login.LoginResult;
 import eu.heiconnect.android.webservice.login.User;
@@ -32,7 +31,7 @@ public class LoginRequestTest extends AbstractDeserializationTest {
     public void testRequest() throws AuthFailureError {
         // Given
         User user = new User("h09330", "pass");
-        LoginRequest request = new LoginRequest(new Configuration(), user, null, null);
+        LoginRequest request = new LoginRequest(user);
 
         // When
         String requestBodyAsString = new String(request.getBody());

@@ -32,7 +32,7 @@ public class SplashActivity extends ConnectActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        ConfigRequest request = new ConfigRequest(getConfiguration(), new SuccessListener(), new ErrorListener());
+        ConfigRequest request = new ConfigRequest(this, new SuccessListener(), new ErrorListener());
         request.setTag(this);
 
         getRequestQueue().add(request);
@@ -59,7 +59,7 @@ public class SplashActivity extends ConnectActivity {
                     intent = new Intent(SplashActivity.this, LoginActivity.class);
                 }
                 startActivity(intent);
-                overridePendingTransition(android.R.anim.fade_in, 0);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 finish();
             } else {
                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(SplashActivity.this);

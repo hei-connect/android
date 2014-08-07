@@ -23,6 +23,7 @@ public class MainActivity extends ConnectActivity {
         PagerAdapter pagerAdapter = new PagerAdapter(this, getFragmentManager());
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager_main);
         viewPager.setAdapter(pagerAdapter);
+        viewPager.setPageMargin(getResources().getDimensionPixelSize(R.dimen.medium));
 
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.pagerslidingtabstrip_main);
         tabs.setViewPager(viewPager);

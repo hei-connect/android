@@ -30,13 +30,16 @@ public abstract class ConnectActivity extends Activity {
     }
 
     // ----------------------------------
-    // PROTECTED METHODS
+    // PUBLIC METHODS
     // ----------------------------------
-    protected Configuration getConfiguration() {
+    public Configuration getConfiguration() {
         ConnectApplication application = (ConnectApplication) getApplication();
         return application.getConfiguration();
     }
 
+    // ----------------------------------
+    // PROTECTED METHODS
+    // ----------------------------------
     protected RequestQueue getRequestQueue() {
         ConnectApplication application = (ConnectApplication) getApplication();
         return application.getRequestQueue();

@@ -2,6 +2,7 @@ package eu.heiconnect.android.webservice.config;
 
 import com.android.volley.Response;
 
+import eu.heiconnect.android.activity.ConnectActivity;
 import eu.heiconnect.android.utils.Configuration;
 import eu.heiconnect.android.webservice.BaseRequest;
 
@@ -15,8 +16,8 @@ public class ConfigRequest extends BaseRequest<ConfigResult> {
     // ----------------------------------
     // CONSTRUCTORS
     // ----------------------------------
-    public ConfigRequest(Configuration configuration, Response.Listener<ConfigResult> listener, Response.ErrorListener errorListener) {
-        super(ConfigResult.class, Method.GET, METHOD_ROUTE, configuration, listener, errorListener);
+    public ConfigRequest(ConnectActivity activity, Response.Listener<ConfigResult> listener, Response.ErrorListener errorListener) {
+        super(ConfigResult.class, Method.GET, METHOD_ROUTE, activity, listener, errorListener);
     }
 
 }
