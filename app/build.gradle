@@ -63,6 +63,7 @@ dependencies {
     compile ("com.astuetz:pagerslidingtabstrip:1.0.1") {
         exclude group: 'com.android.support', module: 'support-v4'
     }
+    compile 'com.nhaarman.listviewanimations:library:2.6.0'
     compile fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
 }
 

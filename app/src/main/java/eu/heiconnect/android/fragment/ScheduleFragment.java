@@ -10,6 +10,7 @@ import android.widget.ListView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.nhaarman.listviewanimations.swinginadapters.prepared.SwingBottomInAnimationAdapter;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -50,6 +51,7 @@ public class ScheduleFragment extends ConnectFragment {
     private BaseListAdapter<Course> adapter;
     private SwipeRefreshLayout refreshLayout;
     private UpdateHeaderView updateHeaderView;
+    private SwingBottomInAnimationAdapter animationAdapter;
 
     // ----------------------------------
     // CONSTRUCTORS
@@ -80,6 +82,7 @@ public class ScheduleFragment extends ConnectFragment {
             update = (Update) savedInstanceState.getSerializable(BUNDLE_KEY_UPDATE);
         }
         adapter = new BaseListAdapter<Course>(getActivity(), CourseCellView.class, courseList);
+        animationAdapter = new SwingBottomInAnimationAdapter(adapter);
 
         if (Day.TODAY.equals(day)) {
             updateHeaderView = new UpdateHeaderView(getActivity());
@@ -109,7 +112,8 @@ public class ScheduleFragment extends ConnectFragment {
         }
 
         ListView listView = (ListView) view.findViewById(R.id.listview_schedule);
-        listView.setAdapter(adapter);
+        animationAdapter.setAbsListView(listView);
+        listView.setAdapter(animationAdapter);
         if (updateHeaderView != null) {
             listView.addHeaderView(updateHeaderView);
         }
