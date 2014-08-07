@@ -10,19 +10,22 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     android:padding="8dp"
-    android:gravity="center">
+    android:gravity="center"
+    android:background="@color/main">
 
     <ImageView
         android:id="@+id/imageview_update_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_done_150" />
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:alpha="0" />
 
     <LinearLayout
+        android:id="@+id/viewgroup_update_content"
         android:orientation="vertical"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="8dp">
+        android:paddingLeft="8dp"
+        android:alpha="0">
 
         <TextView
             android:layout_width="match_parent"
@@ -34,7 +37,9 @@
             android:id="@+id/textview_update_last_sync"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_color" />
+            android:textColor="@color/text_color"
+            android:textStyle="bold"
+            android:textSize="15sp" />
 
     </LinearLayout>
 
