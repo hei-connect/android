@@ -4,6 +4,12 @@
     <string name="app_name">HEI-Connect</string>
     <string name="generic_error">Erreur</string>
     <string name="generic_close">Fermer</string>
+    <string name="generic_time_about">Il y a </string>
+    <string name="generic_time_now">À l\'instant</string>
+    <string name="generic_time_on">Le %s</string>
+    <string name="generic_time_hour">%dh</string>
+    <string name="generic_time_minute">%d min</string>
+    <string name="generic_time_second">%d s</string>
 
     <!-- SPLASH SCREEN -->
     <string name="splash_outdated_title">Version périmée</string>
@@ -25,7 +31,9 @@
     <string name="main_tab_title_absences">Absences</string>
 
     <!-- COURSE CELL VIEW -->
-    <string name="cellview_course_duration">%dmin</string>
     <string name="cellview_course_name">%1$s de %2$s</string>
+
+    <!-- UPDATE HEADER VIEW -->
+    <string name="headerview_update_last_sync">Dernière synchronisation avec e-campus:</string>
 
 </resources>

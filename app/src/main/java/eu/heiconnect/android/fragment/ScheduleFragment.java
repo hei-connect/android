@@ -14,13 +14,14 @@ import com.android.volley.VolleyError;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import eu.heiconnect.android.R;
 import eu.heiconnect.android.activity.ConnectActivity;
 import eu.heiconnect.android.adapter.BaseListAdapter;
+import eu.heiconnect.android.utils.DateUtils;
 import eu.heiconnect.android.utils.PreferencesWrapper;
 import eu.heiconnect.android.view.CourseCellView;
+import eu.heiconnect.android.view.UpdateHeaderView;
 import eu.heiconnect.android.webservice.LoggedInRequest;
 import eu.heiconnect.android.webservice.schedule.Course;
 import eu.heiconnect.android.webservice.schedule.ScheduleResult;
@@ -48,6 +49,7 @@ public class ScheduleFragment extends ConnectFragment {
     private List<Course> courseList;
     private BaseListAdapter<Course> adapter;
     private SwipeRefreshLayout refreshLayout;
+    private UpdateHeaderView updateHeaderView;
 
     // ----------------------------------
     // CONSTRUCTORS
@@ -78,6 +80,13 @@ public class ScheduleFragment extends ConnectFragment {
             update = (Update) savedInstanceState.getSerializable(BUNDLE_KEY_UPDATE);
         }
         adapter = new BaseListAdapter<Course>(getActivity(), CourseCellView.class, courseList);
+
+        if (Day.TODAY.equals(day)) {
+            updateHeaderView = new UpdateHeaderView(getActivity());
+            if (update != null) {
+                updateHeaderView.bindData(update.getUpdatedAt());
+            }
+        }
     }
 
     @Nullable
@@ -95,13 +104,15 @@ public class ScheduleFragment extends ConnectFragment {
         refreshLayout.setColorSchemeColors(getResources().getColor(R.color.success), getResources().getColor(R.color.warning),
                 getResources().getColor(R.color.primary), getResources().getColor(R.color.danger));
 
-        if (lastRequestDate == null
-                || TimeUnit.MILLISECONDS.toMinutes((new Date()).getTime() - lastRequestDate.getTime()) >= MINUTES_FOR_AUTO_REFRESH) {
+        if (lastRequestDate == null || DateUtils.getDifferenceInMinutes(lastRequestDate, new Date()) >= MINUTES_FOR_AUTO_REFRESH) {
             performScheduleRequest();
         }
 
         ListView listView = (ListView) view.findViewById(R.id.listview_schedule);
         listView.setAdapter(adapter);
+        if (updateHeaderView != null) {
+            listView.addHeaderView(updateHeaderView);
+        }
     }
 
     @Override
@@ -149,6 +160,9 @@ public class ScheduleFragment extends ConnectFragment {
             update = scheduleResult.getLastUpdate();
             lastRequestDate = new Date();
             adapter.refill(courseList);
+            if (updateHeaderView != null) {
+                updateHeaderView.bindData(update.getUpdatedAt());
+            }
 
             refreshLayout.setRefreshing(false);
         }

@@ -1,11 +1,14 @@
 package eu.heiconnect.android.utils;
 
-import java.text.ParseException;
+import android.content.Context;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
+
+import eu.heiconnect.android.R;
 
 public class FormatUtils {
 
@@ -26,33 +29,28 @@ public class FormatUtils {
         return new SynchronizedSimpleDateFormat("dd/MM");
     }
 
-    public static String getUserFriendlyElapsedTimeSinceDate(Date date) {
+    public static String getUserFriendlyElapsedTimeSinceDate(Date date, Context context) {
         long seconds = TimeUnit.MILLISECONDS.toSeconds(new Date().getTime() - date.getTime());
 
-        String text = "il y a ";
+        String text = context.getString(R.string.generic_time_about) + " ";
 
         if (seconds < 0) {
-            text = "à l'instant";
+            text = context.getString(R.string.generic_time_now);
 
         } else if (TimeUnit.SECONDS.toDays(seconds) >= 1) {
-            text = "le " + FormatUtils.getShortDateFormat().format(date);
+            text = context.getString(R.string.generic_time_on, FormatUtils.getShortDateFormat().format(date));
 
         } else if (TimeUnit.SECONDS.toHours(seconds) >= 1) {
-            text += String.valueOf(TimeUnit.SECONDS.toHours(seconds)) + " h";
+            text += context.getString(R.string.generic_time_hour, TimeUnit.SECONDS.toHours(seconds));
 
         } else if (TimeUnit.SECONDS.toMinutes(seconds) >= 1) {
-            text += String.valueOf(TimeUnit.SECONDS.toMinutes(seconds)) + " min";
+            text += context.getString(R.string.generic_time_minute, TimeUnit.SECONDS.toMinutes(seconds));
 
         } else {
-            text += String.valueOf(seconds) + " s";
+            text += context.getString(R.string.generic_time_second, seconds);
         }
 
         return text;
-    }
-
-    public static long getDifferenceInMinutes(Date startDate, Date endDate) {
-        long duration = endDate.getTime() - startDate.getTime();
-        return TimeUnit.MILLISECONDS.toMinutes(duration);
     }
 
     // ----------------------------------
@@ -69,14 +67,6 @@ public class FormatUtils {
 
         public synchronized String format(Date date) {
             return sdf.format(date);
-        }
-
-        public synchronized String format(long l) {
-            return sdf.format(l);
-        }
-
-        public synchronized Date parse(String string) throws ParseException {
-            return sdf.parse(string);
         }
     }
 

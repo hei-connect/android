@@ -8,6 +8,7 @@ import android.widget.TextView;
 import java.util.Date;
 
 import eu.heiconnect.android.R;
+import eu.heiconnect.android.utils.DateUtils;
 import eu.heiconnect.android.utils.FormatUtils;
 import eu.heiconnect.android.webservice.schedule.Course;
 
@@ -44,8 +45,8 @@ public class CourseCellView extends CellView<Course> {
     @Override
     protected void bindData(Course course) {
         startTimeTextView.setText(FormatUtils.getTimeFormat().format(course.getDate()));
-        durationTextView.setText(getContext().getString(R.string.cellview_course_duration,
-                FormatUtils.getDifferenceInMinutes(course.getDate(), course.getEndDate())));
+        durationTextView.setText(getContext().getString(R.string.generic_time_minute,
+                DateUtils.getDifferenceInMinutes(course.getDate(), course.getEndDate())));
         nameTextView.setText(getContext().getString(R.string.cellview_course_name,
                 course.getKind(), course.getName()));
         roomTextView.setText(course.getPlace());
