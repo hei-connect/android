@@ -39,5 +39,11 @@
 
     <!-- UPDATE HEADER VIEW -->
     <string name="headerview_update_last_sync">Dernière synchronisation avec e-campus:</string>
+    <string name="infodialog_caption_ecampus">e-campus</string>
+    <string name="infodialog_caption_heiconnect">hei-connect.eu</string>
+    <string name="infodialog_caption_android">hei-connect\nandroid</string>
+    <string name="infodialog_caption_once_day">1x par jour</string>
+    <string name="infodialog_caption_on_demand">à la demande</string>
+    <string name="infodialog_content">HEI-Connect n\'a pas d\'accès direct à la base de données d\'e-campus.\nPour se mettre à jour, une visite sur e-campus.hei.fr est effectuée automatiquement.\nCette visite est longue, couteuse en ressources, et doit être effectuée pour tous les inscrits d\'hei-connect. Elle n\'est donc effectuée qu\'une fois par jour.\nIl est donc possible que les données d\'hei-connect soient périmées entre deux mises à jour.\nSoyez vigilant concernant l\'emploi du temps, notamment lorsque vous avez des examens.</string>
 
 </resources>

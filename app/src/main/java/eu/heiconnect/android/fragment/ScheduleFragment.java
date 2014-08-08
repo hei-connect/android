@@ -1,34 +1,32 @@
 package eu.heiconnect.android.fragment;
 
-import android.content.Context;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.nhaarman.listviewanimations.swinginadapters.prepared.SwingBottomInAnimationAdapter;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import eu.heiconnect.android.R;
 import eu.heiconnect.android.activity.ConnectActivity;
-import eu.heiconnect.android.adapter.BaseListAdapter;
 import eu.heiconnect.android.adapter.ScheduleAdapter;
 import eu.heiconnect.android.utils.DateUtils;
 import eu.heiconnect.android.utils.PreferencesWrapper;
-import eu.heiconnect.android.view.CellView;
 import eu.heiconnect.android.view.CourseCellView;
-import eu.heiconnect.android.view.EmptyScheduleCellView;
 import eu.heiconnect.android.view.UpdateHeaderView;
+import eu.heiconnect.android.view.UpdateInfoDialogView;
 import eu.heiconnect.android.webservice.LoggedInRequest;
 import eu.heiconnect.android.webservice.schedule.Course;
 import eu.heiconnect.android.webservice.schedule.ScheduleResult;
@@ -123,6 +121,7 @@ public class ScheduleFragment extends ConnectFragment {
         if (updateHeaderView != null) {
             listView.addHeaderView(updateHeaderView);
         }
+        listView.setOnItemClickListener(new OnItemClickListener());
     }
 
     @Override
@@ -184,6 +183,24 @@ public class ScheduleFragment extends ConnectFragment {
             // TODO Handle errors gracefully
 
             refreshLayout.setRefreshing(false);
+        }
+    }
+
+    private class OnItemClickListener implements AdapterView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            if (updateHeaderView != null && position == 0) {
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
+                dialogBuilder.setTitle("");
+                dialogBuilder.setView(new UpdateInfoDialogView(dialogBuilder.getContext()));
+                dialogBuilder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Do nothing
+                    }
+                });
+                dialogBuilder.show();
+            }
         }
     }
 
