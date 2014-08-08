@@ -1,8 +1,10 @@
 package eu.heiconnect.android.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.nhaarman.listviewanimations.swinginadapters.prepared.SwingBottomInAnimationAdapter;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -19,9 +22,12 @@ import java.util.List;
 import eu.heiconnect.android.R;
 import eu.heiconnect.android.activity.ConnectActivity;
 import eu.heiconnect.android.adapter.BaseListAdapter;
+import eu.heiconnect.android.adapter.ScheduleAdapter;
 import eu.heiconnect.android.utils.DateUtils;
 import eu.heiconnect.android.utils.PreferencesWrapper;
+import eu.heiconnect.android.view.CellView;
 import eu.heiconnect.android.view.CourseCellView;
+import eu.heiconnect.android.view.EmptyScheduleCellView;
 import eu.heiconnect.android.view.UpdateHeaderView;
 import eu.heiconnect.android.webservice.LoggedInRequest;
 import eu.heiconnect.android.webservice.schedule.Course;
@@ -48,7 +54,7 @@ public class ScheduleFragment extends ConnectFragment {
     private Update update;
     private Date lastRequestDate;
     private List<Course> courseList;
-    private BaseListAdapter<Course> adapter;
+    private ScheduleAdapter adapter;
     private SwipeRefreshLayout refreshLayout;
     private UpdateHeaderView updateHeaderView;
     private SwingBottomInAnimationAdapter animationAdapter;
@@ -81,7 +87,7 @@ public class ScheduleFragment extends ConnectFragment {
             courseList = (ArrayList<Course>) savedInstanceState.getSerializable(BUNDLE_KEY_COURSES);
             update = (Update) savedInstanceState.getSerializable(BUNDLE_KEY_UPDATE);
         }
-        adapter = new BaseListAdapter<Course>(getActivity(), CourseCellView.class, courseList);
+        adapter = new ScheduleAdapter(getActivity(), CourseCellView.class, courseList);
         animationAdapter = new SwingBottomInAnimationAdapter(adapter);
 
         if (Day.TODAY.equals(day)) {
@@ -184,4 +190,5 @@ public class ScheduleFragment extends ConnectFragment {
     public enum Day {
         TODAY, TOMORROW
     }
+
 }

@@ -33,6 +33,10 @@
     <!-- COURSE CELL VIEW -->
     <string name="cellview_course_name">%1$s de %2$s</string>
 
+    <!-- EMPTY SCHEDULE CELL VIEW -->
+    <string name="cellview_schedule_empty">Pas de cours trouvé !</string>
+    <string name="cellview_schedule_check">Mais check quand même e-campus si tu trouves ça bizarre ;)</string>
+
     <!-- UPDATE HEADER VIEW -->
     <string name="headerview_update_last_sync">Dernière synchronisation avec e-campus:</string>
 
