@@ -91,7 +91,7 @@ public class ScheduleFragment extends ConnectFragment {
         if (Day.TODAY.equals(day)) {
             updateHeaderView = new UpdateHeaderView(getActivity());
             if (update != null) {
-                updateHeaderView.bindData(update.getUpdatedAt());
+                updateHeaderView.bindData(update);
             }
         }
     }
@@ -170,7 +170,7 @@ public class ScheduleFragment extends ConnectFragment {
             lastRequestDate = new Date();
             adapter.refill(courseList);
             if (updateHeaderView != null) {
-                updateHeaderView.bindData(update.getUpdatedAt());
+                updateHeaderView.bindData(update);
             }
 
             refreshLayout.setRefreshing(false);

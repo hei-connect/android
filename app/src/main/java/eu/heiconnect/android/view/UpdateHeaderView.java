@@ -18,11 +18,13 @@ import java.util.Date;
 import eu.heiconnect.android.R;
 import eu.heiconnect.android.utils.DateUtils;
 import eu.heiconnect.android.utils.FormatUtils;
+import eu.heiconnect.android.webservice.schedule.Update;
 
 public class UpdateHeaderView extends LinearLayout {
 
     private View cardView;
     private View contentView;
+    private TextView stateTextView;
     private TextView syncTextView;
     private ImageView iconImageView;
 
@@ -48,17 +50,38 @@ public class UpdateHeaderView extends LinearLayout {
     // ----------------------------------
     // PUBLIC METHODS
     // ----------------------------------
-    public void bindData(Date lastSync) {
-        int colorTo;
-        if (DateUtils.getDifferenceInHours(lastSync, new Date()) >= 4) {
-            colorTo = getResources().getColor(R.color.warning);
+    public void bindData(Update update) {
+        int colorTo = getResources().getColor(android.R.color.transparent);
+
+        syncTextView.setText(FormatUtils.getUserFriendlyElapsedTimeSinceDate(update.getUpdatedAt(), getContext()));
+
+        if (Update.STATE_OK.equals(update.getState())) {
+            stateTextView.setText(R.string.headerview_update_last_sync_state_ok);
+            if (DateUtils.getDifferenceInHours(update.getUpdatedAt(), new Date()) >= 4) {
+                colorTo = getResources().getColor(R.color.warning);
+                iconImageView.setImageResource(R.drawable.ic_warning_150);
+            } else {
+                colorTo = getResources().getColor(R.color.success);
+                iconImageView.setImageResource(R.drawable.ic_done_150);
+            }
+        } else if (Update.STATE_FAILED.equals(update.getState())) {
+            colorTo = getResources().getColor(R.color.danger);
             iconImageView.setImageResource(R.drawable.ic_warning_150);
-        } else {
-            colorTo = getResources().getColor(R.color.success);
-            iconImageView.setImageResource(R.drawable.ic_done_150);
+            stateTextView.setText(R.string.headerview_update_last_sync_state_failed);
+        } else if (Update.STATE_DISABLED.equals(update.getState())) {
+            colorTo = getResources().getColor(R.color.danger);
+            iconImageView.setImageResource(R.drawable.ic_warning_150);
+            stateTextView.setText(R.string.headerview_update_last_sync_state_disabled);
+        } else if (Update.STATE_SCHEDULED.equals(update.getState())) {
+            colorTo = getResources().getColor(R.color.info);
+            iconImageView.setImageResource(R.drawable.ic_warning_150);
+            stateTextView.setText(R.string.headerview_update_last_sync_state_scheduled);
+        } else if (Update.STATE_UPDATING.equals(update.getState())) {
+            colorTo = getResources().getColor(R.color.info);
+            iconImageView.setImageResource(R.drawable.ic_warning_150);
+            stateTextView.setText(R.string.headerview_update_last_sync_state_updating);
         }
 
-        syncTextView.setText(FormatUtils.getUserFriendlyElapsedTimeSinceDate(lastSync, getContext()));
 
         // Prepare animation of cardView background color
         int colorFrom = Color.TRANSPARENT;
@@ -93,6 +116,7 @@ public class UpdateHeaderView extends LinearLayout {
         cardView = findViewById(R.id.viewgroup_update_card);
         contentView = findViewById(R.id.viewgroup_update_content);
         iconImageView = (ImageView) findViewById(R.id.imageview_update_icon);
+        stateTextView = (TextView) findViewById(R.id.textview_update_state);
         syncTextView = (TextView) findViewById(R.id.textview_update_last_sync);
     }
 }

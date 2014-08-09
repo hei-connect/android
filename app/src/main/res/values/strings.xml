@@ -44,7 +44,11 @@
     <string name="cellview_schedule_check">Mais check quand même e-campus si tu trouves ça bizarre ;)</string>
 
     <!-- UPDATE HEADER VIEW -->
-    <string name="headerview_update_last_sync">Dernière synchronisation avec e-campus:</string>
+    <string name="headerview_update_last_sync_state_ok">Dernière synchronisation réussie avec e-campus:</string>
+    <string name="headerview_update_last_sync_state_failed">La dernière synchronisation avec e-campus a échoué</string>
+    <string name="headerview_update_last_sync_state_disabled">La synchronisation de l\'emploi du temps avec e-campus est désactivée</string>
+    <string name="headerview_update_last_sync_state_scheduled">La prochaine synchronisation avec e-campus est programmée et en attente</string>
+    <string name="headerview_update_last_sync_state_updating">Synchronisation en cours avec e-campus</string>
     <string name="infodialog_caption_ecampus">e-campus</string>
     <string name="infodialog_caption_heiconnect">hei-connect.eu</string>
     <string name="infodialog_caption_android">hei-connect\nandroid</string>
