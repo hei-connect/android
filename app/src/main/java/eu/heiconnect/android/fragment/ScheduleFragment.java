@@ -191,7 +191,6 @@ public class ScheduleFragment extends ConnectFragment {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             if (updateHeaderView != null && position == 0) {
                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
-                dialogBuilder.setTitle("");
                 dialogBuilder.setView(new UpdateInfoDialogView(dialogBuilder.getContext()));
                 dialogBuilder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
