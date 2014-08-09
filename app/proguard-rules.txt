@@ -47,9 +47,12 @@
 
 # Remove logs for better performances and obfuscation
 -assumenosideeffects class android.util.Log {
+    public static *** isLoggable(java.lang.String, int);
+    public static *** v(...);
     public static *** i(...);
-    public static *** d(...);
     public static *** w(...);
+    public static *** d(...);
     public static *** e(...);
+    public static *** wtf(...);
     public static *** println(...);
 }

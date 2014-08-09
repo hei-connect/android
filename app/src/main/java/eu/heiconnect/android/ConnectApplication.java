@@ -29,7 +29,7 @@ public class ConnectApplication extends Application {
     public void onCreate() {
         super.onCreate();
         Crashlytics.start(this);
-        NewRelic.withApplicationToken(BuildConfig.NEWRELIC_KEY).start(this);
+        NewRelic.withApplicationToken(BuildConfig.NEWRELIC_KEY).withLoggingEnabled(BuildConfig.DEBUG).start(this);
         getTracker();
 
         configuration = new Configuration();
@@ -62,6 +62,8 @@ public class ConnectApplication extends Application {
             if (BuildConfig.DEBUG) {
                 analytics.setDryRun(true);
                 analytics.getLogger().setLogLevel(Logger.LogLevel.VERBOSE);
+            } else {
+                analytics.getLogger().setLogLevel(Logger.LogLevel.ERROR);
             }
 
             tracker = analytics.newTracker(R.xml.tracker);
