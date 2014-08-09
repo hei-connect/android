@@ -25,6 +25,11 @@
 # For Crashlytics to provide the most informative stack traces
 -keepattributes SourceFile,LineNumberTable
 
+# Newrelic related rules
+-keep class com.newrelic.** { *; }
+-dontwarn com.newrelic.**
+-keepattributes Exceptions, Signature, InnerClasses
+
 # Remove logs for better performances and obfuscation
 -assumenosideeffects class android.util.Log {
     public static *** i(...);
