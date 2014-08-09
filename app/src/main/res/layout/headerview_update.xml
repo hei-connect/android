@@ -44,8 +44,7 @@
                 android:id="@+id/textview_update_state"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/text_color"
-                android:text="@string/headerview_update_last_sync_state_ok" />
+                android:textColor="@color/text_color" />
 
             <TextView
                 android:id="@+id/textview_update_last_sync"

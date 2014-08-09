@@ -32,15 +32,13 @@
                 android:id="@+id/textview_course_start_time"
                 android:paddingTop="2sp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="9h30" />
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/textview_course_duration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:text="90min" />
+                android:layout_alignParentBottom="true" />
         </RelativeLayout>
 
         <LinearLayout
@@ -55,16 +53,14 @@
                 android:layout_height="wrap_content"
                 android:paddingBottom="4dp"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textSize="16sp"
-                android:text="Cours de Management de la Qualité" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textview_course_room"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textSize="16sp"
-                android:text="H204" />
+                android:textSize="16sp" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
