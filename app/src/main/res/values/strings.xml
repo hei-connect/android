@@ -10,6 +10,7 @@
     <string name="generic_time_hour">%dh</string>
     <string name="generic_time_minute">%d min</string>
     <string name="generic_time_second">%d s</string>
+    <string name="menu_logout">Déconnexion</string>
 
     <!-- SPLASH SCREEN -->
     <string name="splash_outdated_title">Version périmée</string>

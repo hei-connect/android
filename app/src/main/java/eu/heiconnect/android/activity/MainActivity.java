@@ -3,6 +3,8 @@ package eu.heiconnect.android.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.astuetz.PagerSlidingTabStrip;
 
@@ -20,6 +22,9 @@ public class MainActivity extends ConnectActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        PreferencesWrapper preferences = new PreferencesWrapper(this);
+        setTitle(preferences.getUserName());
+
         PagerAdapter pagerAdapter = new PagerAdapter(this, getFragmentManager());
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager_main);
         viewPager.setAdapter(pagerAdapter);
@@ -36,12 +41,36 @@ public class MainActivity extends ConnectActivity {
         // Check that the user is well logged in
         PreferencesWrapper preferences = new PreferencesWrapper(this);
         if (preferences.getUserName() == null || preferences.getUserToken() == null) {
-            preferences.putUserName(null);
-            preferences.putUserToken(null);
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
-            finish();
+            logoutUser();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_logout) {
+            logoutUser();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
+    // ----------------------------------
+    // PRIVATE METHODS
+    // ----------------------------------
+    private void logoutUser() {
+        PreferencesWrapper preferences = new PreferencesWrapper(this);
+        preferences.putUserName(null);
+        preferences.putUserToken(null);
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
 
