@@ -1,17 +1,35 @@
-# Add project specific ProGuard rules here.
-# By default, the flags in this file are appended to flags specified
-# in /opt/android-sdk/tools/proguard/proguard-android.txt
-# You can edit the include path and order by changing the ProGuard
-# include property in project.properties.
-#
-# For more details, see
-#   http://developer.android.com/guide/developing/tools/proguard.html
+# Keep public method names on POJOs for jackson data binding
+-keep public class eu.heiconnect.android.webservice.** {
+  public void set*(***);
+  public *** get*();
+}
 
-# Add any project specific keep options here:
+# Keep all constructors for view classes
+-keep public class * extends android.view.View {
+    public <init>(android.content.Context);
+    public <init>(android.content.Context, android.util.AttributeSet);
+    public <init>(android.content.Context, android.util.AttributeSet, int);
+}
 
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
+# OKHttp related rules
+-dontwarn okio.**
+-keep class com.squareup.okhttp.** { *; }
+-keep interface com.squareup.okhttp.** { *; }
+-dontwarn com.squareup.okhttp.**
+
+# Jackson related rules
+-keepattributes *Annotation*,EnclosingMethod,Signature
+-keepnames class com.fasterxml.jackson.** { *; }
+-dontwarn com.fasterxml.jackson.databind.**
+
+# For Crashlytics to provide the most informative stack traces
+-keepattributes SourceFile,LineNumberTable
+
+# Remove logs for better performances and obfuscation
+-assumenosideeffects class android.util.Log {
+    public static *** i(...);
+    public static *** d(...);
+    public static *** w(...);
+    public static *** e(...);
+    public static *** println(...);
+}
