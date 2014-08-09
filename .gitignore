@@ -8,3 +8,4 @@ test_servers/
 build/
 *.properties
 *.keystore
+com_crashlytics_export_strings.xml
