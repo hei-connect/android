@@ -27,7 +27,6 @@ import eu.heiconnect.android.view.GradeCellView;
 import eu.heiconnect.android.webservice.grades.Grade;
 import eu.heiconnect.android.webservice.grades.GradesRequest;
 import eu.heiconnect.android.webservice.grades.GradesResult;
-import eu.heiconnect.android.webservice.schedule.Update;
 
 public class GradesFragment extends ConnectFragment {
 
@@ -37,12 +36,10 @@ public class GradesFragment extends ConnectFragment {
     private static final int MINUTES_FOR_AUTO_REFRESH = 4 * 60;
     private static final String BUNDLE_KEY_LAST_REQUEST_DATE = "BUNDLE_KEY_LAST_REQUEST_DATE";
     private static final String BUNDLE_KEY_GRADES = "BUNDLE_KEY_GRADES";
-    private static final String BUNDLE_KEY_UPDATE = "BUNDLE_KEY_UPDATE";
 
     // ----------------------------------
     // ATTRIBUTES
     // ----------------------------------
-    private Update update;
     private View emptyListView;
     private Date lastRequestDate;
     private List<Grade> gradeList;
@@ -62,7 +59,6 @@ public class GradesFragment extends ConnectFragment {
         } else {
             lastRequestDate = (Date) savedInstanceState.getSerializable(BUNDLE_KEY_LAST_REQUEST_DATE);
             gradeList = (ArrayList<Grade>) savedInstanceState.getSerializable(BUNDLE_KEY_GRADES);
-            update = (Update) savedInstanceState.getSerializable(BUNDLE_KEY_UPDATE);
         }
         adapter = new BaseListAdapter<Grade>(getActivity(), GradeCellView.class, gradeList);
         animationAdapter = new SwingBottomInAnimationAdapter(adapter);
@@ -101,7 +97,6 @@ public class GradesFragment extends ConnectFragment {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         outState.putSerializable(BUNDLE_KEY_GRADES, new ArrayList<Grade>(gradeList));
-        outState.putSerializable(BUNDLE_KEY_UPDATE, update);
         outState.putSerializable(BUNDLE_KEY_LAST_REQUEST_DATE, lastRequestDate);
         super.onSaveInstanceState(outState);
     }
@@ -134,7 +129,6 @@ public class GradesFragment extends ConnectFragment {
         @Override
         public void onResponse(GradesResult gradesResult) {
             gradeList = gradesResult.getGrades();
-            update = gradesResult.getLastUpdate();
             lastRequestDate = new Date();
             adapter.refill(gradeList);
             refreshLayout.setRefreshing(false);
