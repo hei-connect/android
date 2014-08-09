@@ -21,11 +21,6 @@ public class ConnectFragment extends Fragment {
     // ----------------------------------
     // PROTECTED METHODS
     // ----------------------------------
-    protected Configuration getConfiguration() {
-        ConnectApplication application = (ConnectApplication) getActivity().getApplication();
-        return application.getConfiguration();
-    }
-
     protected RequestQueue getRequestQueue() {
         ConnectApplication application = (ConnectApplication) getActivity().getApplication();
         return application.getRequestQueue();

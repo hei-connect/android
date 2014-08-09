@@ -20,7 +20,6 @@ public class BaseListAdapter<T> extends BaseAdapter {
     protected Context context;
     protected Class<? extends CellView<T>> cellViewClass;
     protected List<T> objectList;
-    private int dropDownViewResource;
 
     // ----------------------------------
     // CONSTRUCTORS
@@ -91,10 +90,6 @@ public class BaseListAdapter<T> extends BaseAdapter {
 
     public void addAll(List<T> objectList) {
         this.objectList.addAll(objectList);
-    }
-
-    public void remove(T object) {
-        this.objectList.remove(object);
     }
 
     public List<T> getObjectList() {
