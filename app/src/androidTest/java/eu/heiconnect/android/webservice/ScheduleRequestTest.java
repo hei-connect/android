@@ -7,7 +7,7 @@ import eu.heiconnect.android.test.R;
 import eu.heiconnect.android.webservice.schedule.ScheduleResult;
 
 
-public class SchedulesRequestsTest extends AbstractDeserializationTest {
+public class ScheduleRequestTest extends AbstractDeserializationTest {
 
     public void testDeserialization() throws IOException {
         // Given

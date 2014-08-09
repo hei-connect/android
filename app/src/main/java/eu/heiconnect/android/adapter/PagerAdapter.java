@@ -6,6 +6,7 @@ import android.content.Context;
 import android.support.v13.app.FragmentPagerAdapter;
 
 import eu.heiconnect.android.R;
+import eu.heiconnect.android.fragment.GradesFragment;
 import eu.heiconnect.android.fragment.ScheduleFragment;
 
 public class PagerAdapter extends FragmentPagerAdapter {
@@ -35,7 +36,7 @@ public class PagerAdapter extends FragmentPagerAdapter {
                 return ScheduleFragment.newInstance(ScheduleFragment.Day.TOMORROW);
 
             case GRADES:
-                return new Fragment();
+                return new GradesFragment();
 
             case ABSENCES:
                 return new Fragment();

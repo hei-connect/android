@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:background="@color/main">
+
+    <View
+        android:id="@+id/view_grade_indicator"
+        android:layout_width="4dp"
+        android:layout_height="match_parent"
+        android:background="@color/success" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:baselineAligned="false">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false">
+
+            <TextView
+                android:id="@+id/textview_grade_date"
+                android:paddingTop="2sp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="21/01" />
+
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textview_grade_section"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="4dp"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="16sp"
+                    android:text="Machines thermiques" />
+
+                <TextView
+                    android:id="@+id/textview_grade_exam"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DS2 Machines thermiques" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textview_grade_mark"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:paddingBottom="4dp"
+                android:gravity="right"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="16sp"
+                android:text="13.25" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/viewgroup_grade_average"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:id="@+id/textview_grade_average_count"
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:layout_height="wrap_content"
+                android:text="@string/cellview_grade_count" />
+
+            <TextView
+                android:id="@+id/textview_grade_average"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="10,72" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

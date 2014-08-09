@@ -2,6 +2,8 @@ package eu.heiconnect.android.utils;
 
 import android.content.Context;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -53,6 +55,10 @@ public class FormatUtils {
         return text;
     }
 
+    public static SynchronizedNumberFormat getTwoDecimalNumberFormat() {
+        return new SynchronizedNumberFormat("##0.00;-#");
+    }
+
     // ----------------------------------
     // INNER CLASSES
     // ----------------------------------
@@ -70,4 +76,16 @@ public class FormatUtils {
         }
     }
 
+    public static final class SynchronizedNumberFormat {
+
+        private NumberFormat nf;
+
+        private SynchronizedNumberFormat(String pattern) {
+            nf = new DecimalFormat(pattern);
+        }
+
+        public synchronized String format(Number value) {
+            return nf.format(value);
+        }
+    }
 }
