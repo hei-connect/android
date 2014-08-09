@@ -6,6 +6,7 @@ import android.content.Context;
 import android.support.v13.app.FragmentPagerAdapter;
 
 import eu.heiconnect.android.R;
+import eu.heiconnect.android.fragment.AbsencesFragment;
 import eu.heiconnect.android.fragment.GradesFragment;
 import eu.heiconnect.android.fragment.ScheduleFragment;
 
@@ -39,7 +40,7 @@ public class PagerAdapter extends FragmentPagerAdapter {
                 return new GradesFragment();
 
             case ABSENCES:
-                return new Fragment();
+                return new AbsencesFragment();
 
             default:
                 return null;
