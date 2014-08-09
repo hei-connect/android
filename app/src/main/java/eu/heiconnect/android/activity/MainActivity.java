@@ -7,12 +7,29 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.astuetz.PagerSlidingTabStrip;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import eu.heiconnect.android.R;
 import eu.heiconnect.android.adapter.PagerAdapter;
 import eu.heiconnect.android.utils.PreferencesWrapper;
 
 public class MainActivity extends ConnectActivity {
+
+    // ----------------------------------
+    // CONSTANTS
+    // ----------------------------------
+    private static final String MAIN_SCREEN_NAME = "Main";
+    private static final String TODAY_SCREEN_NAME = "Today";
+    private static final String TOMORROW_PAGE_NAME = "Tomorrow";
+    private static final String GRADES_PAGE_NAME = "Grades";
+    private static final String ABSENCES_PAGE_NAME = "Absences";
+    private static final String LOGOUT_EVENT_ACTION = "Logout";
+
+    // ----------------------------------
+    // ATTRIBUTES
+    // ----------------------------------
+    private PagerAdapter pagerAdapter;
 
     // ----------------------------------
     // LIFE CYCLE
@@ -22,16 +39,23 @@ public class MainActivity extends ConnectActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Tracker tracker = getTracker();
+        tracker.setScreenName(MAIN_SCREEN_NAME);
+        tracker.send(new HitBuilders.AppViewBuilder().build());
+        tracker.setScreenName(TODAY_SCREEN_NAME);
+        tracker.send(new HitBuilders.AppViewBuilder().build());
+
         PreferencesWrapper preferences = new PreferencesWrapper(this);
         setTitle(preferences.getUserName());
 
-        PagerAdapter pagerAdapter = new PagerAdapter(this, getFragmentManager());
+        pagerAdapter = new PagerAdapter(this, getFragmentManager());
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager_main);
         viewPager.setAdapter(pagerAdapter);
         viewPager.setPageMargin(getResources().getDimensionPixelSize(R.dimen.medium));
 
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.pagerslidingtabstrip_main);
         tabs.setViewPager(viewPager);
+        tabs.setOnPageChangeListener(new OnPageChangeListener());
     }
 
     @Override
@@ -66,11 +90,51 @@ public class MainActivity extends ConnectActivity {
     // ----------------------------------
     private void logoutUser() {
         PreferencesWrapper preferences = new PreferencesWrapper(this);
+
+        getTracker().send(new HitBuilders.EventBuilder()
+                .setCategory(LoginActivity.SIGN_IN_EVENT_CATEGORY)
+                .setAction(LOGOUT_EVENT_ACTION)
+                .setLabel(preferences.getUserName())
+                .build());
+
         preferences.putUserName(null);
         preferences.putUserToken(null);
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    // ----------------------------------
+    // INNER CLASSES
+    // ----------------------------------
+    private class OnPageChangeListener extends ViewPager.SimpleOnPageChangeListener {
+        @Override
+        public void onPageSelected(int position) {
+            super.onPageSelected(position);
+
+            Tracker tracker = getTracker();
+
+            if (tracker != null) {
+                String path = "Unknown";
+                switch (pagerAdapter.getPageType(position)) {
+                    case TODAY:
+                        path = TODAY_SCREEN_NAME;
+                        break;
+                    case TOMORROW:
+                        path = TOMORROW_PAGE_NAME;
+                        break;
+                    case GRADES:
+                        path = GRADES_PAGE_NAME;
+                        break;
+                    case ABSENCES:
+                        path = ABSENCES_PAGE_NAME;
+                        break;
+                }
+
+                tracker.setScreenName(path);
+                tracker.send(new HitBuilders.AppViewBuilder().build());
+            }
+        }
     }
 }
 

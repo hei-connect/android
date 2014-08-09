@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import eu.heiconnect.android.R;
 import eu.heiconnect.android.utils.PreferencesWrapper;
@@ -31,9 +33,12 @@ public class LoginActivity extends ConnectActivity {
     // ----------------------------------
     // CONSTANTS
     // ----------------------------------
+    public static final String SIGN_IN_EVENT_CATEGORY = "SignIn";
     private static final int BAD_CREDENTIALS_ERROR = 20;
     private static final int NOT_SIGNED_UP_ERROR = 21;
     private static final String HEI_CONNECT_WEB_URL = "http://www.hei-connect.eu";
+    private static final String LOGIN_PAGE_NAME = "Login";
+    private static final String LOGIN_EVENT_ACTION = "Login";
 
     // ----------------------------------
     // ATTRIBUTES
@@ -51,6 +56,10 @@ public class LoginActivity extends ConnectActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        Tracker tracker = getTracker();
+        tracker.setScreenName(LOGIN_PAGE_NAME);
+        tracker.send(new HitBuilders.AppViewBuilder().build());
+
         progressBar = (ProgressBar) findViewById(R.id.progressbar_login_loader);
         loginEditText = (EditText) findViewById(R.id.edittext_login);
         passwordEditText = (EditText) findViewById(R.id.edittext_password);
@@ -61,7 +70,7 @@ public class LoginActivity extends ConnectActivity {
     // ----------------------------------
     // PRIVATE METHODS
     // ----------------------------------
-    private void performLoginRequest(String login, String password) {
+    private void performLoginRequest(final String login, String password) {
         final User user = new User(login, password);
         LoginRequest request = new LoginRequest(this, user, new Response.Listener<LoginResult>() {
             @Override
@@ -71,6 +80,12 @@ public class LoginActivity extends ConnectActivity {
                 PreferencesWrapper preferences = new PreferencesWrapper(LoginActivity.this);
                 preferences.putUserToken(loginResult.getUser().getApiToken());
                 preferences.putUserName(loginResult.getUser().getEcampusId());
+
+                getTracker().send(new HitBuilders.EventBuilder()
+                        .setCategory(SIGN_IN_EVENT_CATEGORY)
+                        .setAction(LOGIN_EVENT_ACTION)
+                        .setLabel(login)
+                        .build());
 
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);

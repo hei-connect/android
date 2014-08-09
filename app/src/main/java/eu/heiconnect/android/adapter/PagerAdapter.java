@@ -23,11 +23,18 @@ public class PagerAdapter extends FragmentPagerAdapter {
     }
 
     // ----------------------------------
+    // PUBLIC METHODS
+    // ----------------------------------
+    public Page getPageType(int position) {
+        return Page.values()[position];
+    }
+
+    // ----------------------------------
     // OVERRIDEN METHODS
     // ----------------------------------
     @Override
     public Fragment getItem(int position) {
-        Page page = Page.values()[position];
+        Page page = getPageType(position);
 
         switch (page) {
             case TODAY:
@@ -54,7 +61,7 @@ public class PagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return context.getString(Page.values()[position].getTitleId());
+        return context.getString(getPageType(position).getTitleId());
     }
 
     // ----------------------------------

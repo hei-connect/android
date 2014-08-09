@@ -8,6 +8,8 @@ import android.os.Bundle;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import eu.heiconnect.android.BuildConfig;
 import eu.heiconnect.android.ConnectApplication;
@@ -23,6 +25,7 @@ public class SplashActivity extends ConnectActivity {
     // ----------------------------------
     private static final String MARKET_URI = "market://details?id=";
     private static final String PLAY_STORE_URI = "http://play.google.com/store/apps/details?id=";
+    private static final String SPLASH_PAGE_NAME = "Splash";
 
     // ----------------------------------
     // LIFE CYCLE
@@ -31,6 +34,10 @@ public class SplashActivity extends ConnectActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        Tracker tracker = getTracker();
+        tracker.setScreenName(SPLASH_PAGE_NAME);
+        tracker.send(new HitBuilders.AppViewBuilder().build());
 
         ConfigRequest request = new ConfigRequest(this, new SuccessListener(), new ErrorListener());
         request.setTag(this);

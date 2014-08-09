@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
+import com.google.android.gms.analytics.Tracker;
 
 import eu.heiconnect.android.ConnectApplication;
 import eu.heiconnect.android.R;
@@ -43,6 +44,11 @@ public abstract class ConnectActivity extends Activity {
     protected RequestQueue getRequestQueue() {
         ConnectApplication application = (ConnectApplication) getApplication();
         return application.getRequestQueue();
+    }
+
+    protected Tracker getTracker() {
+        ConnectApplication application = (ConnectApplication) getApplication();
+        return application.getTracker();
     }
 
     protected void showGenericErrorAlertDialog(VolleyError volleyError) {

@@ -39,6 +39,8 @@
         <meta-data
             android:name="com.crashlytics.ApiKey"
             android:value="6bc4b9ebac4838bba8be402b277074a6d44551fc" />
+        <meta-data android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
 
     </application>
 
