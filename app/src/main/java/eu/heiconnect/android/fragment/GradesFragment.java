@@ -1,5 +1,7 @@
 package eu.heiconnect.android.fragment;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -41,6 +43,7 @@ public class GradesFragment extends ConnectFragment {
     // ATTRIBUTES
     // ----------------------------------
     private Update update;
+    private View emptyListView;
     private Date lastRequestDate;
     private List<Grade> gradeList;
     private BaseListAdapter<Grade> adapter;
@@ -75,6 +78,8 @@ public class GradesFragment extends ConnectFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        emptyListView = view.findViewById(R.id.viewgroup_grades_empty);
+
         refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swiperefreshlayout_grades);
         refreshLayout.setOnRefreshListener(new RefreshListener());
         refreshLayout.setColorSchemeColors(getResources().getColor(R.color.success), getResources().getColor(R.color.warning),
@@ -82,6 +87,10 @@ public class GradesFragment extends ConnectFragment {
 
         if (lastRequestDate == null || DateUtils.getDifferenceInMinutes(lastRequestDate, new Date()) >= MINUTES_FOR_AUTO_REFRESH) {
             performGradesRequest();
+        }
+
+        if (gradeList.size() > 0) {
+            emptyListView.setVisibility(View.GONE);
         }
 
         ListView listView = (ListView) view.findViewById(R.id.listview_grades);
@@ -129,6 +138,16 @@ public class GradesFragment extends ConnectFragment {
             lastRequestDate = new Date();
             adapter.refill(gradeList);
             refreshLayout.setRefreshing(false);
+
+            if (emptyListView.getVisibility() == View.VISIBLE && gradeList.size() > 0) {
+                emptyListView.animate().alpha(0).setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        emptyListView.setVisibility(View.GONE);
+                        super.onAnimationEnd(animation);
+                    }
+                });
+            }
         }
     }
 

@@ -30,6 +30,9 @@
     <string name="main_tab_title_grades">Notes</string>
     <string name="main_tab_title_absences">Absences</string>
 
+    <!-- GRADES SCREEN -->
+    <string name="grades_empty">Pas de notes trouvées !</string>
+
     <!-- COURSE CELL VIEW -->
     <string name="cellview_course_name">%1$s de %2$s</string>
 
