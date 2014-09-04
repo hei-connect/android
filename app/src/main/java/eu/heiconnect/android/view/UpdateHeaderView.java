@@ -51,7 +51,7 @@ public class UpdateHeaderView extends LinearLayout {
     // PUBLIC METHODS
     // ----------------------------------
     public void bindData(Update update) {
-        int colorTo = getResources().getColor(android.R.color.transparent);
+        int colorTo;
 
         syncTextView.setText(FormatUtils.getUserFriendlyElapsedTimeSinceDate(update.getUpdatedAt(), getContext()));
 
@@ -80,6 +80,10 @@ public class UpdateHeaderView extends LinearLayout {
             colorTo = getResources().getColor(R.color.info);
             iconImageView.setImageResource(R.drawable.ic_warning_150);
             stateTextView.setText(R.string.headerview_update_last_sync_state_updating);
+        } else {
+            colorTo = getResources().getColor(R.color.danger);
+            iconImageView.setImageResource(R.drawable.ic_warning_150);
+            stateTextView.setText(R.string.headerview_update_last_sync_state_unknown);
         }
 
 
