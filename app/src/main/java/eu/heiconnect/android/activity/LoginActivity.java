@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
@@ -80,6 +81,7 @@ public class LoginActivity extends ConnectActivity {
                 PreferencesWrapper preferences = new PreferencesWrapper(LoginActivity.this);
                 preferences.putUserToken(loginResult.getUser().getApiToken());
                 preferences.putUserName(loginResult.getUser().getEcampusId());
+                Crashlytics.setUserIdentifier(loginResult.getUser().getEcampusId());
 
                 getTracker().send(new HitBuilders.EventBuilder()
                         .setCategory(SIGN_IN_EVENT_CATEGORY)

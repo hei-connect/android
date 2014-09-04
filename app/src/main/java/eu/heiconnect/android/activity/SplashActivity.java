@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
@@ -61,6 +62,7 @@ public class SplashActivity extends ConnectActivity {
                 PreferencesWrapper preferences = new PreferencesWrapper(SplashActivity.this);
                 Intent intent;
                 if (preferences.getUserName() != null && preferences.getUserToken() != null) {
+                    Crashlytics.setUserIdentifier(preferences.getUserName());
                     intent = new Intent(SplashActivity.this, MainActivity.class);
                 } else {
                     intent = new Intent(SplashActivity.this, LoginActivity.class);
