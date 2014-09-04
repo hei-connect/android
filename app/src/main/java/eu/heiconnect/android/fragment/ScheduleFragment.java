@@ -116,11 +116,11 @@ public class ScheduleFragment extends ConnectFragment {
         }
 
         ListView listView = (ListView) view.findViewById(R.id.listview_schedule);
-        animationAdapter.setAbsListView(listView);
-        listView.setAdapter(animationAdapter);
         if (updateHeaderView != null) {
             listView.addHeaderView(updateHeaderView);
         }
+        animationAdapter.setAbsListView(listView);
+        listView.setAdapter(animationAdapter);
         listView.setOnItemClickListener(new OnItemClickListener());
     }
 
