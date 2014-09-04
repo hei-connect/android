@@ -11,7 +11,6 @@ import com.google.android.gms.analytics.Tracker;
 import com.newrelic.agent.android.NewRelic;
 
 import eu.heiconnect.android.utils.Configuration;
-import eu.heiconnect.android.webservice.OkHttpStack;
 
 public class ConnectApplication extends Application {
 
@@ -33,7 +32,7 @@ public class ConnectApplication extends Application {
         getTracker();
 
         configuration = new Configuration();
-        requestQueue = Volley.newRequestQueue(this, new OkHttpStack());
+        requestQueue = Volley.newRequestQueue(this);
         requestQueue.start();
 
     }

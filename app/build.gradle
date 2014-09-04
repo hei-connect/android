@@ -71,7 +71,6 @@ android {
 }
 
 dependencies {
-    compile 'com.squareup.okhttp:okhttp-urlconnection:2.0.0'
     compile 'com.mcxiaoke.volley:library:1.0.6@aar'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.3.1'
 
