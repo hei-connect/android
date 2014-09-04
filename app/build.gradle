@@ -18,8 +18,8 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 19
-        versionCode 10000
-        versionName "1.0"
+        versionCode 10001
+        versionName "1.0.1"
         applicationId "eu.heiconnect.android"
         testApplicationId "eu.heiconnect.android.test"
         testInstrumentationRunner "android.test.InstrumentationTestRunner"
