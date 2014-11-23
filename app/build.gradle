@@ -26,7 +26,6 @@ android {
         debug {
             buildConfigField 'String', 'API_URL_BASE', "\"http://10.0.3.2:3000/\""
             buildConfigField 'String', 'API_URL_PATH', "\"api/v1/\""
-            buildConfigField 'String', 'NEWRELIC_KEY', "\"AA41630c18fd5b723beb00e894e944f54b33542169\""
 
             signingConfig signingConfigs.debug
             applicationIdSuffix '.debug'
@@ -36,7 +35,6 @@ android {
         staging {
             buildConfigField 'String', 'API_URL_BASE', "\"http://www.hei-connect.eu/\""
             buildConfigField 'String', 'API_URL_PATH', "\"api/v1/\""
-            buildConfigField 'String', 'NEWRELIC_KEY', "\"AA41630c18fd5b723beb00e894e944f54b33542169\""
 
             signingConfig signingConfigs.debug
             applicationIdSuffix '.staging'
@@ -46,12 +44,11 @@ android {
         release {
             buildConfigField 'String', 'API_URL_BASE', "\"http://www.hei-connect.eu/\""
             buildConfigField 'String', 'API_URL_PATH', "\"api/v1/\""
-            buildConfigField 'String', 'NEWRELIC_KEY', "\"AA41630c18fd5b723beb00e894e944f54b33542169\""
 
             signingConfig signingConfigs.release
 
             debuggable false
-            runProguard true
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
@@ -74,7 +71,6 @@ dependencies {
     }
     compile 'com.nhaarman.listviewanimations:library:2.6.0'
 
-    compile 'com.newrelic.agent.android:android-agent:3.+'
     compile 'com.crashlytics.android:crashlytics:1.1.13'
     compile 'com.google.android.gms:play-services:6.1.71'
 

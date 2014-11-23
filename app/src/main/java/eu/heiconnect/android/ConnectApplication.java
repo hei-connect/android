@@ -8,7 +8,6 @@ import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Logger;
 import com.google.android.gms.analytics.Tracker;
-import com.newrelic.agent.android.NewRelic;
 
 import eu.heiconnect.android.utils.Configuration;
 
@@ -28,7 +27,6 @@ public class ConnectApplication extends Application {
     public void onCreate() {
         super.onCreate();
         Crashlytics.start(this);
-        NewRelic.withApplicationToken(BuildConfig.NEWRELIC_KEY).withLoggingEnabled(BuildConfig.DEBUG).start(this);
         getTracker();
 
         configuration = new Configuration();
