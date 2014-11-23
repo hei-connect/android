@@ -3,16 +3,17 @@
 buildscript {
     repositories {
         mavenCentral()
+        maven { url 'http://download.crashlytics.com/maven' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.12.+'
         classpath 'com.newrelic.agent.android:agent-gradle-plugin:3.+'
+        classpath 'com.android.tools.build:gradle:0.14.4'
+        classpath 'com.crashlytics.tools.gradle:crashlytics-gradle:1.14.3'
     }
 }
 
 allprojects {
     repositories {
         mavenCentral()
-        maven { url 'http://download.crashlytics.com/maven' }
     }
 }
