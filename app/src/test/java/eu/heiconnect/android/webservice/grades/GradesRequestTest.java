@@ -1,17 +1,23 @@
-package eu.heiconnect.android.webservice;
+package eu.heiconnect.android.webservice.grades;
+
+import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
 
-import eu.heiconnect.android.test.R;
-import eu.heiconnect.android.webservice.grades.GradesResult;
+import eu.heiconnect.android.webservice.AbstractDeserializationTest;
+
+import static junit.framework.TestCase.assertFalse;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 
 public class GradesRequestTest extends AbstractDeserializationTest {
 
+    @Test
     public void testDeserialization() throws IOException {
         // Given
-        InputStream raw = getInstrumentation().getContext().getResources().openRawResource(R.raw.grades);
+        InputStream raw = inputStream.get("grades.json");
 
         // When
         GradesResult result = mapper.readValue(raw, GradesResult.class);
@@ -25,8 +31,8 @@ public class GradesRequestTest extends AbstractDeserializationTest {
         assertEquals("Sport 75%", result.getGrades().get(0).getExamName());
         assertNotNull(result.getGrades().get(0).getDate());
         assertFalse(result.getGrades().get(0).isUnknown());
-        assertEquals(16.0, result.getGrades().get(0).getMark());
-        assertEquals(12.5, result.getGrades().get(0).getAverage());
+        assertEquals(16.0, result.getGrades().get(0).getMark(), 0);
+        assertEquals(12.5, result.getGrades().get(0).getAverage(), 0);
         assertEquals(2, result.getGrades().get(0).getAverageCount());
         assertNotNull(result.getLastUpdate());
     }

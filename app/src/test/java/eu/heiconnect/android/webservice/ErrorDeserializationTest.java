@@ -2,23 +2,27 @@ package eu.heiconnect.android.webservice;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 
+import org.junit.Test;
+
 import java.io.IOException;
 import java.io.InputStream;
 
-import eu.heiconnect.android.test.R;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 
 public class ErrorDeserializationTest extends AbstractDeserializationTest {
 
     @Override
-    protected void setUp() throws Exception {
+    public void setUp() throws Exception {
         super.setUp();
         mapper.configure(DeserializationFeature.UNWRAP_ROOT_VALUE, true);
     }
 
+    @Test
     public void testDeserialization1() throws IOException {
         // Given
-        InputStream raw = getInstrumentation().getContext().getResources().openRawResource(R.raw.error_login_1);
+        InputStream raw = inputStream.get("error_login_1.json");
 
         // When
         Error error = mapper.readValue(raw, Error.class);
@@ -29,9 +33,10 @@ public class ErrorDeserializationTest extends AbstractDeserializationTest {
         assertEquals("Login/password incorrect", error.getMessage());
     }
 
+    @Test
     public void testDeserialization2() throws IOException {
         // Given
-        InputStream raw = getInstrumentation().getContext().getResources().openRawResource(R.raw.error_login_2);
+        InputStream raw = inputStream.get("error_login_2.json");
 
         // When
         Error error = mapper.readValue(raw, Error.class);

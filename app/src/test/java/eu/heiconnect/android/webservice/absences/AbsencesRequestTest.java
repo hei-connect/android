@@ -1,17 +1,22 @@
-package eu.heiconnect.android.webservice;
+package eu.heiconnect.android.webservice.absences;
+
+import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
 
-import eu.heiconnect.android.test.R;
-import eu.heiconnect.android.webservice.absences.AbsencesResult;
+import eu.heiconnect.android.webservice.AbstractDeserializationTest;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 
 public class AbsencesRequestTest extends AbstractDeserializationTest {
 
+    @Test
     public void testDeserialization() throws IOException {
         // Given
-        InputStream raw = getInstrumentation().getContext().getResources().openRawResource(R.raw.absences);
+        InputStream raw = inputStream.get("absences.json");
 
         // When
         AbsencesResult result = mapper.readValue(raw, AbsencesResult.class);
